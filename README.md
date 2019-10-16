@@ -30,7 +30,7 @@ This needs to be a "fully working application" (you choose the format: web, cli,
 
 - If your UI looking great, 0 line of CSS is quite enough CSS
 - You use the latest JS framework of the day
-- The programming language
+- The programming language (We write a lot of Kotlin & Typescript at Pleo, just in case you want to show off your skills!)
 
 ## What would be awesome:
 
