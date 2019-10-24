@@ -4,7 +4,7 @@
 
 We're really happy that you're considering to join us! Here's a challenge that will help us understand your skills and serve as a starting discussion point for the interview.
 
-We're not expecting that everything will be done perfectly as we value your time. You're encouraged to point out possible improvements in your solution and we will dicuss them during the interview.
+We're not expecting that everything will be done perfectly as we value your time. You're encouraged to point out possible improvements in your solution and we will discuss them during the interview.
 
 ## The challenge: Money Formatting
 
