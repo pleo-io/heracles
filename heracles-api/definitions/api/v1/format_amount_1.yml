@@ -1,0 +1,74 @@
+swagger: "2.0"
+info:
+  title: Heracles
+  version: 1.0.0
+  description: Heracles money formatting
+host: heracles.pleo.io
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /api/v1/formatAmount:
+    post:
+      summary: Formats amount as strings
+      description: Formats amount as strings
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: "../../common/v1/common_1.yml#/parameters/messageId"
+        - $ref: "../../common/v1/common_1.yml#/parameters/timestamp"
+        - $ref: "../../common/v1/common_1.yml#/parameters/groupId"
+        - in: body
+          name: formatAmountRequest
+          required: true
+          schema:
+            $ref: "#/definitions/FormatAmountRequest"
+
+      responses:
+        "200":
+          description: Format amount operations success
+          schema:
+            $ref: "#/definitions/FormatAmountResponse"
+        "400":
+          description: Request rejected
+          schema:
+            $ref: "#/definitions/FormatAmountResponse"
+        "401":
+          description: Request unauthorized
+          schema:
+            $ref: "#/definitions/FormatAmountResponse"
+        "500":
+          description: Request failed
+          schema:
+            $ref: "#/definitions/FormatAmountResponse"
+
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+
+definitions:
+  FormatAmountRequest:
+    type: object
+    properties:
+      header:
+        $ref: "../../common/v1/common_1.yml#/definitions/Header"
+      amount:
+        $ref: "../../common/v1/common_1.yml#/definitions/Amount"
+    required:
+      - header
+      - amount
+
+  FormatAmountResponse:
+    type: object
+    properties:
+      header:
+        $ref: "../../common/v1/common_1.yml#/definitions/Header"
+      formattedAmount:
+        type: string
+    required:
+      - header
