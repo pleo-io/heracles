@@ -19,12 +19,24 @@ import com.squareup.moshi.Json
  * 
  * @param header 
  * @param amount 
+ * @param decimalPlaces 
+ * @param thousandsSeparator 
+ * @param decimalSeparator 
+ * @param locale 
  */
 data class FormatAmountRequest (
     @Json(name = "header")
     val header: io.pleo.heracles.infrastructure.api.common.dto.v1.Header,
     @Json(name = "amount")
-    val amount: io.pleo.heracles.infrastructure.api.common.dto.v1.Amount
+    val amount: io.pleo.heracles.infrastructure.api.common.dto.v1.Amount,
+    @Json(name = "decimalPlaces")
+    val decimalPlaces: kotlin.Int? = null,
+    @Json(name = "thousandsSeparator")
+    val thousandsSeparator: kotlin.String? = null,
+    @Json(name = "decimalSeparator")
+    val decimalSeparator: kotlin.String? = null,
+    @Json(name = "locale")
+    val locale: kotlin.String? = null
 ) {
 
 }

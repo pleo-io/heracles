@@ -59,6 +59,15 @@ definitions:
         $ref: "../../common/v1/common_1.yml#/definitions/Header"
       amount:
         $ref: "../../common/v1/common_1.yml#/definitions/Amount"
+      decimalPlaces:
+        type: integer
+        format: int32
+      thousandsSeparator:
+        type: string
+      decimalSeparator:
+        type: string
+      locale:
+        type: string
     required:
       - header
       - amount
