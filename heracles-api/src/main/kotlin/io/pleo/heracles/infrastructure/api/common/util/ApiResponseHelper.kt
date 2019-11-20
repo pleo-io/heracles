@@ -219,12 +219,16 @@ object ApiResponseHelper {
             if (requestHeaderGroupId != null && requestHeaderGroupId.isNotEmpty()) {
                 groupId = requestHeaderGroupId
             }
+        }
 
+        if (groupId == null) {
             // third priority is to use the messageId in the body as the responseGroupId.
             if (requestBodyMessageId != null && requestBodyMessageId.isNotEmpty()) {
                 groupId = requestBodyMessageId
             }
+        }
 
+        if (groupId == null) {
             // last priority is to use the messageId in the header as the responseGroupId.
             if (requestHeaderMessageId != null && requestHeaderMessageId.isNotEmpty()) {
                 groupId = requestHeaderMessageId
