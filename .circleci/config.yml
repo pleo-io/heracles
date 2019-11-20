@@ -14,7 +14,7 @@ jobs:
       # run linting!
       - run:
           name: run linting
-          command: gradle check
+          command: ./bin/lint.sh
 
   api-unit-test:
     docker:
@@ -30,7 +30,7 @@ jobs:
       # run linting!
       - run:
           name: run linting
-          command: gradle test
+          command: ./bin/unit-test.sh
 
 workflows:
   version: 2

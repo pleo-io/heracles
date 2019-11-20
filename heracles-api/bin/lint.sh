@@ -2,4 +2,4 @@
 
 set -e
 
-./gradlew check
+./gradlew check -x test
