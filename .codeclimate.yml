@@ -1,0 +1,27 @@
+version: "2"
+checks:
+  file-lines:
+    config:
+      threshold: 300
+  argument-count:
+    enabled: true
+    config:
+      threshold: 5
+  complex-logic:
+    enabled: true
+    config:
+      threshold: 6
+  method-complexity:
+    enabled: true
+    config:
+      threshold: 7
+  method-count:
+    enabled: true
+    config:
+      threshold: 45
+  method-lines:
+    enabled: true
+    config:
+      threshold: 35
+exclude_patterns:
+  - "**/dto/**"
