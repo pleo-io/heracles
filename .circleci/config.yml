@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  api-lint:
+    docker:
+      - image: circleci/openjdk:8-jdk
+        working_directory: ~/heracles-api
+      steps:
+        - checkout
+        -
+        # run linting!
+        - run:
+            name: run linting
+            command: ./heracles-api/bin/lint.sh
+
+  unit-lint:
+    docker:
+      - image: circleci/openjdk:8-jdk
+        working_directory: ~/heracles-api
+      steps:
+        - checkout
+        -
+        # run linting!
+        - run:
+            name: run linting
+            command: ./heracles-api/bin/unit-test.sh
