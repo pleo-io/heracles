@@ -6,7 +6,7 @@ import io.pleo.heracles.infrastructure.api.common.errors.ErrorCodes
 import io.pleo.heracles.infrastructure.api.common.exceptions.MalformedRequestException
 import io.pleo.heracles.infrastructure.api.common.util.ApiRequestValidationHelper
 import io.pleo.heracles.infrastructure.api.common.util.ApiResponseHelper
-import io.pleo.heracles.util.exceptions.UnknownLocaleException
+import io.pleo.heracles.application.exceptions.UnknownLocaleException
 import java.math.BigDecimal
 import javax.servlet.http.HttpServletRequest
 import org.springframework.http.ResponseEntity

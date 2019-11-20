@@ -1,7 +1,7 @@
 package io.pleo.heracles.application.services
 
 import io.pleo.heracles.domain.model.MonetaryAmount
-import io.pleo.heracles.util.Localizer
+import io.pleo.heracles.application.util.Localizer
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat

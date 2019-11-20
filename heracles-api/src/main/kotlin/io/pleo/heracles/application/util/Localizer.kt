@@ -1,6 +1,6 @@
-package io.pleo.heracles.util
+package io.pleo.heracles.application.util
 
-import io.pleo.heracles.util.exceptions.UnknownLocaleException
+import io.pleo.heracles.application.exceptions.UnknownLocaleException
 import java.util.Locale
 import kotlin.collections.HashMap
 

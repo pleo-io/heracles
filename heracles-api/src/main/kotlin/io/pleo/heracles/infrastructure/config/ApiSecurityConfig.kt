@@ -1,14 +1,13 @@
 package io.pleo.heracles.infrastructure.config
 
-import java.io.IOException
-import javax.servlet.http.HttpServletResponse
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.ServletException
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.pleo.heracles.infrastructure.api.common.dto.v1.ApiErrorResponse
 import io.pleo.heracles.infrastructure.api.common.errors.ErrorCodes
 import io.pleo.heracles.infrastructure.api.common.util.ApiResponseHelper
+import java.io.IOException
+import javax.servlet.http.HttpServletResponse
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.ServletException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
