@@ -32,9 +32,7 @@ object ApiRequestValidationHelper {
                 ?: throw MalformedRequestException(
                         responseHelper.lookupErrorMessage(ErrorCodes.MISSING_TIMESTAMP_HEADER_ERR_MSG.value))
         this.validateTimestampField(timestamp)
-
     }
-
 
     /**
      * A simple method to validate expected fields in a request header.

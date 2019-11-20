@@ -2,24 +2,45 @@ version: 2
 jobs:
   api-lint:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/openjdk:11-jdk
         working_directory: ~/heracles-api
-      steps:
-        - checkout
-        -
-        # run linting!
-        - run:
-            name: run linting
-            command: ./heracles-api/bin/lint.sh
+    steps:
+      - checkout
 
-  unit-lint:
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      # run linting!
+      - run:
+          name: run linting
+          command: cd heracles-api/ && ./bin/lint.sh
+
+  api-unit-test:
     docker:
       - image: circleci/openjdk:8-jdk
         working_directory: ~/heracles-api
-      steps:
-        - checkout
-        -
-        # run linting!
-        - run:
-            name: run linting
-            command: ./heracles-api/bin/unit-test.sh
+    steps:
+      - checkout
+
+      # run linting!
+      - run:
+          name: run linting
+          command: cd heracles-api/ && ./bin/unit-test.sh
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - api-lint
+      - api-unit-test

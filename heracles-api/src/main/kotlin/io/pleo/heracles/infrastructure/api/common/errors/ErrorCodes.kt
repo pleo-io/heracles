@@ -13,4 +13,3 @@ enum class ErrorCodes(val value: String) {
     CONFLICTING_MESSAGE_ID_ERR_MSG("invalidRequest.conflictingMessageId"),
     INVALID_TIMESTAMP_ERR_MSG("invalidRequest.invalidTimestamp"),
 }
-

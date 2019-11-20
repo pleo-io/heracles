@@ -27,8 +27,8 @@ class GlobalRestControllerExceptionHandler {
     </Object> */
     @ExceptionHandler(HttpRequestMethodNotSupportedException::class)
     fun handleHttpRequestMethodNotSupported(
-            ex: HttpRequestMethodNotSupportedException,
-            request: WebRequest
+        ex: HttpRequestMethodNotSupportedException,
+        request: WebRequest
     ): ResponseEntity<ApiErrorResponse> {
         val header = responseHelper.createRejectedHeader(
                 request, responseHelper.lookupErrorCode(ErrorCodes.INVALID_METHOD_ERR.value),
@@ -49,11 +49,11 @@ class GlobalRestControllerExceptionHandler {
     </Object> */
     @ExceptionHandler(HttpMessageNotReadableException::class)
     fun handleHttpMessageNotReadable(
-            ex: HttpMessageNotReadableException,
-            request: WebRequest
+        ex: HttpMessageNotReadableException,
+        request: WebRequest
     ): ResponseEntity<ApiErrorResponse> {
         val response: ApiErrorResponse
-        when(ex.rootCause) {
+        when (ex.rootCause) {
             is MissingKotlinParameterException -> {
                 val header = responseHelper.createRejectedHeader(
                         webRequest = request,

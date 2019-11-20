@@ -9,7 +9,6 @@ import java.time.ZoneId
 import java.util.ResourceBundle
 import java.util.UUID
 import javax.servlet.http.HttpServletRequest
-
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.context.request.WebRequest
@@ -44,10 +43,10 @@ object ApiResponseHelper {
      */
 
     fun createFailureHeader(
-            httpRequest: HttpServletRequest,
-            header: Header?,
-            errorCode: String,
-            errorMessage: String
+        httpRequest: HttpServletRequest,
+        header: Header?,
+        errorCode: String,
+        errorMessage: String
     ): Header {
         return createBasicHeaderFromHttpRequest(
                 httpRequest,
@@ -68,10 +67,10 @@ object ApiResponseHelper {
      * @return
      */
     fun createRejectedHeader(
-            httpRequest: HttpServletRequest,
-            header: Header?,
-            errorCode: String,
-            errorMessage: String
+        httpRequest: HttpServletRequest,
+        header: Header?,
+        errorCode: String,
+        errorMessage: String
     ): Header {
         return createBasicHeaderFromHttpRequest(
                 httpRequest,
@@ -152,9 +151,9 @@ object ApiResponseHelper {
      * @return
      */
     fun createBasicHeaderFromHttpRequest(
-            httpRequest: HttpServletRequest,
-            requestHeader: Header?,
-            status: Status
+        httpRequest: HttpServletRequest,
+        requestHeader: Header?,
+        status: Status
     ): Header {
         val requestHeaderGroupId = httpRequest.getHeader(Headers.GROUP_ID.value)
         val requestHeaderMessageId = httpRequest.getHeader(Headers.MESSAGE_ID.value)
@@ -202,11 +201,11 @@ object ApiResponseHelper {
      * @return
      */
     fun createBasicHeader(
-            requestBodyMessageId: String? = null,
-            requestHeaderMessageId: String? = null,
-            requestBodyGroupId: String? = null,
-            requestHeaderGroupId: String? = null,
-            status: Status
+        requestBodyMessageId: String? = null,
+        requestHeaderMessageId: String? = null,
+        requestBodyGroupId: String? = null,
+        requestHeaderGroupId: String? = null,
+        status: Status
     ): Header {
         val responseMessageId = UUID.randomUUID().toString()
         val responseTimestamp = OffsetDateTime.now(ZoneId.of("UTC"))

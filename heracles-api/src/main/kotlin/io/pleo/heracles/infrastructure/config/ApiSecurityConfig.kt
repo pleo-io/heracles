@@ -5,9 +5,9 @@ import io.pleo.heracles.infrastructure.api.common.dto.v1.ApiErrorResponse
 import io.pleo.heracles.infrastructure.api.common.errors.ErrorCodes
 import io.pleo.heracles.infrastructure.api.common.util.ApiResponseHelper
 import java.io.IOException
-import javax.servlet.http.HttpServletResponse
-import javax.servlet.http.HttpServletRequest
 import javax.servlet.ServletException
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -25,7 +25,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
-
 
 @Configuration
 @EnableWebSecurity
@@ -71,7 +70,7 @@ class ApiSecurityConfig : WebSecurityConfigurerAdapter() {
             val validPrincipal = principalRequestValues!!.stream().anyMatch {
                 principalRequestValue -> principalRequestValue.trim { it <= ' ' } == principal }
             if (!validPrincipal) {
-                //not made a constant as this value gets converted by to a message that adheres to API standards
+                // not made a constant as this value gets converted by to a message that adheres to API standards
                 // in the RestAuthenticationEntryPoint below.
                 throw BadCredentialsException("Invalid API Key received.")
             }
@@ -91,9 +90,9 @@ class ApiSecurityConfig : WebSecurityConfigurerAdapter() {
 
         @Throws(IOException::class, ServletException::class)
         override fun commence(
-                httpServletRequest: HttpServletRequest,
-                httpServletResponse: HttpServletResponse,
-                exception: AuthenticationException
+            httpServletRequest: HttpServletRequest,
+            httpServletResponse: HttpServletResponse,
+            exception: AuthenticationException
         ) {
             httpServletResponse.contentType = "application/json"
             httpServletResponse.status = HttpStatus.UNAUTHORIZED.value()

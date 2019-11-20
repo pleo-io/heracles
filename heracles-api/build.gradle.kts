@@ -185,13 +185,12 @@ tasks.register("generateDTO") {
 
 tasks {
 	"lintKotlinMain"(LintTask::class) {
-		dependsOn("generate")
+		dependsOn("generateDTO")
 		doFirst {
 
 			// exclude generated files
-			val list: MutableList<String> = (project.ext.get("generatedFileNames")
-					as MutableList<String>)
-			val sourceFiles: MutableList<String> = mutableListOf<String>()
+			val list: MutableList<String> = (project.ext.get("generatedFileNames") as MutableList<String>)
+			val sourceFiles: MutableList<String> = mutableListOf()
 			source.forEach {
 				if (!list.contains(it.absolutePath)) {
 					sourceFiles.add(it.absolutePath)
@@ -209,8 +208,7 @@ jacoco {
 tasks.jacocoTestReport {
 	doFirst {
 
-		val list: MutableList<String> = (project.ext.get("generatedFileNames")
-				as MutableList<String>)
+		val list: MutableList<String> = (project.ext.get("generatedFileNames") as MutableList<String>)
 		sourceDirectories.setFrom(
 				sourceSets.main.get().output.asFileTree.matching {
 					// exclude main()
@@ -219,9 +217,9 @@ tasks.jacocoTestReport {
 		)
 
 		// exclude generated classed
-		val excluded: MutableList<String> = mutableListOf<String>()
+		val excluded: MutableList<String> = mutableListOf()
 		list.forEach {
-			excluded.add(it.substring(it.indexOf("world/jumo")).replace(".kt", "**"))
+			excluded.add(it.substring(it.indexOf("io/pleo")).replace(".kt", "**"))
 		}
 
 		classDirectories.setFrom(
@@ -259,7 +257,7 @@ tasks.jacocoTestCoverageVerification {
 		// exclude generated classed
 		val excluded: MutableList<String> = mutableListOf<String>()
 		list.forEach {
-			excluded.add(it.substring(it.indexOf("world/jumo")).replace(".kt", "**"))
+			excluded.add(it.substring(it.indexOf("io/pleo")).replace(".kt", "**"))
 		}
 
 		classDirectories.setFrom(

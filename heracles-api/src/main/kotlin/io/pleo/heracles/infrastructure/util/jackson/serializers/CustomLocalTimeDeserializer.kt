@@ -1,11 +1,10 @@
 package io.pleo.heracles.infrastructure.util.jackson.serializers
 
-import java.io.IOException
-import java.time.LocalTime
-
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
+import java.io.IOException
+import java.time.LocalTime
 
 class CustomLocalTimeDeserializer : JsonDeserializer<LocalTime>() {
     @Throws(IOException::class)

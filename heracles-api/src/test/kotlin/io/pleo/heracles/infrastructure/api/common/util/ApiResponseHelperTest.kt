@@ -122,9 +122,9 @@ class ApiResponseHelperTest {
 
             assert(responseEntity.statusCode == HttpStatus.OK)
 
-            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0]  == groupId)
-            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0]  == messageId)
-            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0]  == timestamp.toString())
+            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0] == groupId)
+            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0] == messageId)
+            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0] == timestamp.toString())
 
             assert(responseEntity.hasBody())
             assert(responseEntity.body == body)
@@ -147,9 +147,9 @@ class ApiResponseHelperTest {
 
             assert(responseEntity.statusCode == HttpStatus.BAD_REQUEST)
 
-            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0]  == groupId)
-            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0]  == messageId)
-            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0]  == timestamp.toString())
+            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0] == groupId)
+            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0] == messageId)
+            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0] == timestamp.toString())
 
             assert(responseEntity.hasBody())
             assert(responseEntity.body == body)
@@ -172,9 +172,9 @@ class ApiResponseHelperTest {
 
             assert(responseEntity.statusCode == HttpStatus.INTERNAL_SERVER_ERROR)
 
-            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0]  == groupId)
-            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0]  == messageId)
-            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0]  == timestamp.toString())
+            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0] == groupId)
+            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0] == messageId)
+            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0] == timestamp.toString())
 
             assert(responseEntity.hasBody())
             assert(responseEntity.body == body)
@@ -197,9 +197,9 @@ class ApiResponseHelperTest {
 
             assert(responseEntity.statusCode == HttpStatus.INTERNAL_SERVER_ERROR)
 
-            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0]  == groupId)
-            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0]  == messageId)
-            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0]  == timestamp.toString())
+            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0] == groupId)
+            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0] == messageId)
+            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0] == timestamp.toString())
 
             assert(responseEntity.hasBody())
             assert(responseEntity.body == body)
@@ -222,9 +222,9 @@ class ApiResponseHelperTest {
 
             assert(responseEntity.statusCode == HttpStatus.INTERNAL_SERVER_ERROR)
 
-            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0]  == groupId)
-            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0]  == messageId)
-            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0]  == timestamp.toString())
+            assert(responseEntity.headers[Headers.GROUP_ID.value]!![0] == groupId)
+            assert(responseEntity.headers[Headers.MESSAGE_ID.value]!![0] == messageId)
+            assert(responseEntity.headers[Headers.TIMESTAMP.value]!![0] == timestamp.toString())
 
             assert(responseEntity.hasBody())
             assert(responseEntity.body == body)
@@ -293,7 +293,6 @@ class ApiResponseHelperTest {
             assert(header.groupId == groupId)
             assert(header.messageId == messageId)
         }
-
     }
 
     @Nested
