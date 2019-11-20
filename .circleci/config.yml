@@ -7,14 +7,10 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: cd heracles-api directory
-          command: cd heracles-api/ && ls
-
       # run linting!
       - run:
           name: run linting
-          command: ./gradlew check -x test
+          command: cd heracles-api/ && ./bin/lint.sh
 
   api-unit-test:
     docker:
@@ -23,14 +19,10 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: cd heracles-api directory
-          command: cd heracles-api/ && ls
-
       # run linting!
       - run:
           name: run linting
-          command: ./gradlew test
+          command: cd heracles-api/ && ./bin/unit-test.sh
 
 workflows:
   version: 2
