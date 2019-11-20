@@ -1,4 +1,4 @@
-package io.pleo.heracles.infrastructure.api.common.utils
+package io.pleo.heracles.infrastructure.api.common.util
 
 import io.pleo.heracles.infrastructure.api.common.Headers
 import io.pleo.heracles.infrastructure.api.common.dto.v1.Header

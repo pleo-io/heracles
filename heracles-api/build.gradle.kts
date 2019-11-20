@@ -1,6 +1,6 @@
 import com.example.gradle.tasks.GenerateModelTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-//import org.jmailen.gradle.kotlinter.tasks.LintTask
+import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 plugins {
 	id("org.springframework.boot") version "2.2.0.RELEASE"
@@ -8,7 +8,7 @@ plugins {
 	id("org.openapi.generator")
 	kotlin("jvm") version "1.3.50"
 	kotlin("plugin.spring") version "1.3.41"
-//	id("org.jmailen.kotlinter") version "2.1.0"
+	id("org.jmailen.kotlinter") version "2.1.0"
 	jacoco
 }
 
@@ -84,7 +84,9 @@ dependencies {
 		exclude(module ="spring-boot-starter-logging")
 		exclude(module = "mockito-core")
 	}
+	testImplementation("io.mockk:mockk:1.9.1")
 	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.2")
+	testImplementation("org.testcontainers:testcontainers:1.12.0")
 }
 
 project.ext.set("generatedFileNames", mutableListOf<String>())
@@ -173,8 +175,117 @@ generateMappings.forEach {
 	generatorNames.add(name)
 }
 
+tasks.test {
+	useJUnitPlatform()
+}
+
 tasks.register("generateDTO") {
 	dependsOn(generatorNames)
+}
+
+tasks {
+	"lintKotlinMain"(LintTask::class) {
+		dependsOn("generate")
+		doFirst {
+
+			// exclude generated files
+			val list: MutableList<String> = (project.ext.get("generatedFileNames")
+					as MutableList<String>)
+			val sourceFiles: MutableList<String> = mutableListOf<String>()
+			source.forEach {
+				if (!list.contains(it.absolutePath)) {
+					sourceFiles.add(it.absolutePath)
+				}
+			}
+			setSource(files(sourceFiles))
+		}
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.4"
+}
+
+tasks.jacocoTestReport {
+	doFirst {
+
+		val list: MutableList<String> = (project.ext.get("generatedFileNames")
+				as MutableList<String>)
+		sourceDirectories.setFrom(
+				sourceSets.main.get().output.asFileTree.matching {
+					// exclude main()
+					exclude(list)
+				}
+		)
+
+		// exclude generated classed
+		val excluded: MutableList<String> = mutableListOf<String>()
+		list.forEach {
+			excluded.add(it.substring(it.indexOf("world/jumo")).replace(".kt", "**"))
+		}
+
+		classDirectories.setFrom(
+				sourceSets.main.get().output.asFileTree.matching {
+					// exclude main()
+					exclude(excluded)
+				}
+		)
+	}
+	reports {
+		val mainSrc = "$rootDir/src/main/kotlin"
+		val tree = fileTree("$rootDir/build/classes")
+
+		sourceDirectories.setFrom(mainSrc)
+		classDirectories.setFrom(files(tree))
+		xml.isEnabled = true
+		csv.isEnabled = false
+		html.isEnabled = true
+		xml.destination = file("$buildDir/reports/coverage/build.xml")
+		html.destination = file("$buildDir/reports/coverage")
+	}
+}
+
+tasks.jacocoTestCoverageVerification {
+	doFirst {
+		val list: MutableList<String> = (project.ext.get("generatedFileNames")
+				as MutableList<String>)
+		sourceDirectories.setFrom(
+				sourceSets.main.get().output.asFileTree.matching {
+					// exclude main()
+					exclude(list)
+				}
+		)
+
+		// exclude generated classed
+		val excluded: MutableList<String> = mutableListOf<String>()
+		list.forEach {
+			excluded.add(it.substring(it.indexOf("world/jumo")).replace(".kt", "**"))
+		}
+
+		classDirectories.setFrom(
+				sourceSets.main.get().output.asFileTree.matching {
+					// exclude main()
+					exclude(excluded)
+				}
+		)
+	}
+	violationRules {
+		rule {
+			limit {
+				minimum = "0.8".toBigDecimal()
+			}
+		}
+	}
+}
+
+val testCoverage by tasks.registering {
+	group = "verification"
+	description = "Runs the unit tests with coverage."
+
+	dependsOn(":generate", ":test", ":jacocoTestReport", ":jacocoTestCoverageVerification")
+	val jacocoTestReport = tasks.findByName("jacocoTestReport")
+	jacocoTestReport?.mustRunAfter(tasks.findByName("test"))
+	tasks.findByName("jacocoTestCoverageVerification")?.mustRunAfter(jacocoTestReport)
 }
 
 tasks.withType<KotlinCompile> {

@@ -1,8 +1,9 @@
-package io.pleo.heracles.infrastructure.api.common.utils
+package io.pleo.heracles.infrastructure.api.common.util
 
 import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import io.pleo.heracles.infrastructure.api.common.dto.v1.ApiErrorResponse
 import io.pleo.heracles.infrastructure.api.common.errors.ErrorCodes
+import java.time.format.DateTimeParseException
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.HttpRequestMethodNotSupportedException
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
-import java.time.format.DateTimeParseException
 
 @RestControllerAdvice
 class GlobalRestControllerExceptionHandler {
@@ -29,7 +29,7 @@ class GlobalRestControllerExceptionHandler {
     fun handleHttpRequestMethodNotSupported(
             ex: HttpRequestMethodNotSupportedException,
             request: WebRequest
-    ): ResponseEntity<*> {
+    ): ResponseEntity<ApiErrorResponse> {
         val header = responseHelper.createRejectedHeader(
                 request, responseHelper.lookupErrorCode(ErrorCodes.INVALID_METHOD_ERR.value),
                 responseHelper.lookupErrorMessage(ErrorCodes.INVALID_METHOD_ERR.value)
@@ -51,7 +51,7 @@ class GlobalRestControllerExceptionHandler {
     fun handleHttpMessageNotReadable(
             ex: HttpMessageNotReadableException,
             request: WebRequest
-    ): ResponseEntity<*> {
+    ): ResponseEntity<ApiErrorResponse> {
         val response: ApiErrorResponse
         when(ex.rootCause) {
             is MissingKotlinParameterException -> {

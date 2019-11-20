@@ -8,7 +8,7 @@ import javax.servlet.ServletException
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.pleo.heracles.infrastructure.api.common.dto.v1.ApiErrorResponse
 import io.pleo.heracles.infrastructure.api.common.errors.ErrorCodes
-import io.pleo.heracles.infrastructure.api.common.utils.ApiResponseHelper
+import io.pleo.heracles.infrastructure.api.common.util.ApiResponseHelper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean

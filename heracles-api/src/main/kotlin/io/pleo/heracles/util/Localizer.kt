@@ -7,11 +7,12 @@ import kotlin.collections.HashMap
 object Localizer {
 
     // Map exists as a cache in order to resolve locales faster.
-    // it also stores the cached string against the Locale used, as these can be
-    // different.
-    // Eg the user may supply "en_KE", but the closest locale found is just en.
+    // it also stores the cached string against the Locale used,
+    // as these can be different.
+    // E.g. the user supplies "en_KE", but the closest locale found is just en.
     // the map will map the "en_KE" string to the en locale.
     private val localeMap: Map<String, Locale> = HashMap()
+
     /**
      * Looks up the Locale based on String. This method acts as a hook to return a
      * custom locale should it be required. Eg: if No locale 'en_XX' exists, we
@@ -47,6 +48,10 @@ object Localizer {
         throw UnknownLocaleException(localeString)
     }
 
+    /**
+     * Filter for a cased locale string from the list of system known
+     * locales.
+     */
     private fun findLocale(casedLocale: String): Locale? {
         return Locale.getAvailableLocales().firstOrNull { knownLocale ->
             knownLocale.toString().equals(other = casedLocale, ignoreCase = true)

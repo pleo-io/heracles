@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KotlinSpringExampleApplication
+class HeraclesApplication
 
 fun main(args: Array<String>) {
-	runApplication<KotlinSpringExampleApplication>(*args)
+	runApplication<HeraclesApplication>(*args)
 }

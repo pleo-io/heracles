@@ -4,16 +4,15 @@ import io.pleo.heracles.application.services.MoneyFormattingService
 import io.pleo.heracles.domain.model.MonetaryAmount
 import io.pleo.heracles.infrastructure.api.common.errors.ErrorCodes
 import io.pleo.heracles.infrastructure.api.common.exceptions.MalformedRequestException
-import io.pleo.heracles.infrastructure.api.common.utils.ApiRequestValidationHelper
-import io.pleo.heracles.infrastructure.api.common.utils.ApiResponseHelper
-import io.pleo.heracles.util.Localizer
+import io.pleo.heracles.infrastructure.api.common.util.ApiRequestValidationHelper
+import io.pleo.heracles.infrastructure.api.common.util.ApiResponseHelper
 import io.pleo.heracles.util.exceptions.UnknownLocaleException
+import java.math.BigDecimal
+import javax.servlet.http.HttpServletRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import java.math.BigDecimal
-import javax.servlet.http.HttpServletRequest
 
 @RestController
 class FormatAmountRestController {
@@ -33,7 +32,6 @@ class FormatAmountRestController {
                     header = formatAmountRequest.header,
                     servletRequest = httpRequest
             )
-            val locale = formatAmountRequest.locale?.let { Localizer.resolveLocale(it) }
             val amount = formatAmountRequest.amount
             val monetaryAmount = MonetaryAmount(
                     currency = amount.currency,
@@ -46,7 +44,7 @@ class FormatAmountRestController {
                     decimalPlaces = formatAmountRequest.decimalPlaces,
                     thousandsSeparator = formatAmountRequest.thousandsSeparator?.single(),
                     decimalSeparator = formatAmountRequest.decimalSeparator?.single(),
-                    locale = locale
+                    localeString = formatAmountRequest.locale
             )
             FormatAmountResponse(
                     header = responseHelper.createSuccessHeader(httpRequest, formatAmountRequest.header),
