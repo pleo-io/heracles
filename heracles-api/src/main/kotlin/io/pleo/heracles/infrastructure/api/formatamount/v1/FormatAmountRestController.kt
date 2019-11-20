@@ -10,15 +10,16 @@ import io.pleo.heracles.application.exceptions.UnknownLocaleException
 import java.math.BigDecimal
 import javax.servlet.http.HttpServletRequest
 import org.springframework.http.ResponseEntity
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class FormatAmountRestController {
+class FormatAmountRestController @Autowired constructor(private val moneyFormattingService: MoneyFormattingService) {
 
-    val responseHelper = ApiResponseHelper
-    val validationHelper = ApiRequestValidationHelper
+    private val responseHelper = ApiResponseHelper
+    private val validationHelper = ApiRequestValidationHelper
 
     @PostMapping("/api/v1/formatAmount")
     fun formatAmount(
@@ -39,7 +40,7 @@ class FormatAmountRestController {
                             amount.value.toString()).divide(BigDecimal(10).pow(amount.precision)
                     )
             )
-            val formattedAmount = MoneyFormattingService().format(
+            val formattedAmount = moneyFormattingService.format(
                     monetaryAmount,
                     decimalPlaces = formatAmountRequest.decimalPlaces,
                     thousandsSeparator = formatAmountRequest.thousandsSeparator?.single(),
@@ -73,7 +74,7 @@ class FormatAmountRestController {
                             httpRequest = httpRequest,
                             header = formatAmountRequest.header,
                             errorCode = responseHelper.lookupErrorCode(ErrorCodes.UNKNOWN_FAILURE.value),
-                            errorMessage = err.toString()))
+                            errorMessage = err.message!!))
         }
         return responseHelper.createResponseEntity(response.header, response)
     }

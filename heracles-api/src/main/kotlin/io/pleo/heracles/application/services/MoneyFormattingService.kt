@@ -6,6 +6,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.util.Locale
+import org.springframework.stereotype.Service
 
 private const val DEFAULT_DECIMAL_PLACES = 2
 private const val DEFAULT_THOUSANDS_SEPARATOR = ','
@@ -14,6 +15,7 @@ private const val DEFAULT_DECIMAL_SEPARATOR = '.'
 /**
  * Money formatting service
  */
+@Service
 class MoneyFormattingService {
 
     /**
