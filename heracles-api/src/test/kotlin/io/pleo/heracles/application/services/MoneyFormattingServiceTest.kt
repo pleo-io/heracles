@@ -1,9 +1,9 @@
 package io.pleo.heracles.application.services
 
 import io.pleo.heracles.domain.model.MonetaryAmount
+import java.math.BigDecimal
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import java.math.BigDecimal
 
 class MoneyFormattingServiceTest {
 
@@ -21,7 +21,7 @@ class MoneyFormattingServiceTest {
 
         @Test
         fun `test amount formatted with locale preferences if supplied`() {
-            val expected = "1٬000٫00"  // note the thousands separator is not a '.' for ar locale
+            val expected = "1٬000٫00" // note the thousands separator is not a '.' for ar locale
             assert(expected == moneyFormattingService.format(monetaryAmount = monetaryAmount, localeString = "ar"))
         }
 

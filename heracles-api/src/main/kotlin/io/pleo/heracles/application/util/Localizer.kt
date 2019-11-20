@@ -24,7 +24,7 @@ object Localizer {
      * @throws UnknownLocaleException
      */
     @Throws(UnknownLocaleException::class)
-     fun resolveLocale(localeString: String): Locale? {
+    fun resolveLocale(localeString: String): Locale? {
         val casedLocale = localeString.toLowerCase()
         // first see if it exists in the cached map
         val locale: Locale? = localeMap[casedLocale]

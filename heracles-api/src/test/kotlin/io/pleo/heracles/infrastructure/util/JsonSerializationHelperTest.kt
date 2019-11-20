@@ -11,14 +11,14 @@ import java.time.format.DateTimeFormatter
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-
 class JsonSerializationHelperTest {
 
     private var testObjectToSerialize: TestObject = TestObject(id, name, number, occurredAt, active)
     private var serializedJsonString: String = String.format(
             "{\"id\":\"%s\",\"name\":\"%s\",\"number\":%s,\"occurredAt\":\"%s\",\"active\":%s}", id, name, number,
             occurredAt.toZonedDateTime().toInstant().atZone(ZoneId.of("UTC")).toOffsetDateTime(),
-            active.toString())
+            active.toString()
+    )
 
     @Test
     @Throws(JsonSerializationException::class)

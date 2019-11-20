@@ -11,10 +11,10 @@ jobs:
           name: cd heracles-api directory
           command: cd heracles-api/
 
-#      # run linting!
-#      - run:
-#          name: run linting
-#          command: ./bin/lint.sh
+      # run linting!
+      - run:
+          name: run linting
+          command: gradle check
 
   api-unit-test:
     docker:
@@ -27,10 +27,10 @@ jobs:
           name: cd heracles-api directory
           command: cd heracles-api/
 
-#      # run linting!
-#      - run:
-#          name: run linting
-#          command: ./bin/unit-test.sh
+      # run linting!
+      - run:
+          name: run linting
+          command: gradle test
 
 workflows:
   version: 2

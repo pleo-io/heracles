@@ -48,12 +48,11 @@ class FormatAmountRestControllerTest {
     inner class FormatAmount {
         @Test
         fun `test amount formatted and success response returned`() {
-
             val response = formatAmountRestController.formatAmount(formatAmountRequest, httpRequestWithGroupId)
             val responseBody = response.body!!
 
             assert(response.statusCode == HttpStatus.OK)
-            assert(response.headers[Headers.GROUP_ID.value]!![0]  == groupId)
+            assert(response.headers[Headers.GROUP_ID.value]!![0] == groupId)
             assert("$currency $mockedFormattedAmount" == responseBody.formattedAmount)
         }
 
@@ -71,7 +70,7 @@ class FormatAmountRestControllerTest {
             )
 
             assert(response.statusCode == HttpStatus.BAD_REQUEST)
-            assert(response.headers[Headers.GROUP_ID.value]!![0]  == groupId)
+            assert(response.headers[Headers.GROUP_ID.value]!![0] == groupId)
             assert(responseBody.header.responseStatus!!.status == expectedResponseStatus)
             assert(responseBody.header.responseStatus!!.errorCode == expectedErrorCode)
             assert(responseBody.header.responseStatus!!.errorMessage == expectedErrorMessage)
@@ -91,7 +90,7 @@ class FormatAmountRestControllerTest {
             val expectedErrorMessage = unknownLocaleException.message
 
             assert(response.statusCode == HttpStatus.BAD_REQUEST)
-            assert(response.headers[Headers.GROUP_ID.value]!![0]  == groupId)
+            assert(response.headers[Headers.GROUP_ID.value]!![0] == groupId)
             assert(responseBody.header.responseStatus!!.status == expectedResponseStatus)
             assert(responseBody.header.responseStatus!!.errorCode == expectedErrorCode)
             assert(responseBody.header.responseStatus!!.errorMessage == expectedErrorMessage)
@@ -111,11 +110,10 @@ class FormatAmountRestControllerTest {
             val expectedErrorMessage = unknownException.message
 
             assert(response.statusCode == HttpStatus.INTERNAL_SERVER_ERROR)
-            assert(response.headers[Headers.GROUP_ID.value]!![0]  == groupId)
+            assert(response.headers[Headers.GROUP_ID.value]!![0] == groupId)
             assert(responseBody.header.responseStatus!!.status == expectedResponseStatus)
             assert(responseBody.header.responseStatus!!.errorCode == expectedErrorCode)
             assert(responseBody.header.responseStatus!!.errorMessage == expectedErrorMessage)
         }
     }
-
 }

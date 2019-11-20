@@ -1,7 +1,7 @@
 package io.pleo.heracles.application.services
 
-import io.pleo.heracles.domain.model.MonetaryAmount
 import io.pleo.heracles.application.util.Localizer
+import io.pleo.heracles.domain.model.MonetaryAmount
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
@@ -23,11 +23,11 @@ class MoneyFormattingService {
      * and returns a string formatted value of the amount.
      */
     fun format(
-            monetaryAmount: MonetaryAmount,
-            decimalPlaces: Int? = 2,
-            thousandsSeparator: Char? = null,
-            decimalSeparator: Char? = null,
-            localeString: String? = null
+        monetaryAmount: MonetaryAmount,
+        decimalPlaces: Int? = 2,
+        thousandsSeparator: Char? = null,
+        decimalSeparator: Char? = null,
+        localeString: String? = null
     ): String {
         val locale = localeString?.let { Localizer.resolveLocale(it) }
         return this.createDecimalFormat(locale, decimalPlaces, thousandsSeparator, decimalSeparator)
@@ -38,10 +38,10 @@ class MoneyFormattingService {
      * Creates a [DecimalFormat] customized with the passed in configuration
      */
     private fun createDecimalFormat(
-            locale: Locale?,
-            decimalPlaces: Int?,
-            thousandsSeparator: Char?,
-            decimalSeparator: Char?
+        locale: Locale?,
+        decimalPlaces: Int?,
+        thousandsSeparator: Char?,
+        decimalSeparator: Char?
     ): DecimalFormat {
         val numberFormat: NumberFormat
         val minimumFractionDigits: Int
@@ -55,9 +55,8 @@ class MoneyFormattingService {
             maximumFractionDigits = decimalPlaces ?: numberFormat.maximumFractionDigits
             groupingSeparatorChar = thousandsSeparator ?: numberFormat.decimalFormatSymbols.groupingSeparator
             decimalSeparatorChar = decimalSeparator ?: numberFormat.decimalFormatSymbols.decimalSeparator
-
         } else {
-            numberFormat =  NumberFormat.getInstance() as DecimalFormat
+            numberFormat = NumberFormat.getInstance() as DecimalFormat
             minimumFractionDigits = decimalPlaces ?: DEFAULT_DECIMAL_PLACES
             maximumFractionDigits = decimalPlaces ?: DEFAULT_DECIMAL_PLACES
             groupingSeparatorChar = thousandsSeparator ?: DEFAULT_THOUSANDS_SEPARATOR
@@ -69,7 +68,7 @@ class MoneyFormattingService {
 
         val formatSymbols = DecimalFormatSymbols(Locale.getDefault())
         formatSymbols.groupingSeparator = groupingSeparatorChar
-        formatSymbols.decimalSeparator  = decimalSeparatorChar
+        formatSymbols.decimalSeparator = decimalSeparatorChar
         numberFormat.decimalFormatSymbols = formatSymbols
 
         return numberFormat
