@@ -56,7 +56,7 @@ object ApiRequestValidationHelper {
         }
         // both groupId's are not null, yet they differ.
         val bodyGroupId = header.groupId
-        if (headerGroupId != null && bodyGroupId != headerGroupId) {
+        if (headerGroupId != null && bodyGroupId != null && bodyGroupId != headerGroupId) {
             throw MalformedRequestException(
                     responseHelper.lookupErrorMessage(ErrorCodes.CONFLICTING_GROUP_ID_ERR_MSG.value))
         }

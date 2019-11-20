@@ -33,6 +33,7 @@ object Localizer {
         var result = findLocale(casedLocale)
         if (result != null) {
             localeMap.plus(Pair(casedLocale, result))
+            return result
         }
         // try match on only the language eg: en
         val dashIndex = casedLocale.indexOf("_")
@@ -47,7 +48,7 @@ object Localizer {
     }
 
     private fun findLocale(casedLocale: String): Locale? {
-        return Locale.getAvailableLocales().first { knownLocale ->
+        return Locale.getAvailableLocales().firstOrNull { knownLocale ->
             knownLocale.toString().equals(other = casedLocale, ignoreCase = true)
         }
     }

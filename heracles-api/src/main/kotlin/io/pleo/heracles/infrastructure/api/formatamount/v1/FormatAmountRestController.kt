@@ -7,6 +7,7 @@ import io.pleo.heracles.infrastructure.api.common.exceptions.MalformedRequestExc
 import io.pleo.heracles.infrastructure.api.common.utils.ApiRequestValidationHelper
 import io.pleo.heracles.infrastructure.api.common.utils.ApiResponseHelper
 import io.pleo.heracles.util.Localizer
+import io.pleo.heracles.util.exceptions.UnknownLocaleException
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -52,7 +53,6 @@ class FormatAmountRestController {
                     formattedAmount = "${monetaryAmount.currency} $formattedAmount"
             )
 
-
         } catch (err: MalformedRequestException) {
             FormatAmountResponse(
                     header = responseHelper.createRejectedHeader(
@@ -61,7 +61,15 @@ class FormatAmountRestController {
                             errorCode = responseHelper.lookupErrorCode(ErrorCodes.INVALID_REQUEST_ERR.value),
                             errorMessage = err.message))
 
-        } catch (err: Exception) {
+        } catch (err: UnknownLocaleException) {
+            FormatAmountResponse(
+                    header = responseHelper.createRejectedHeader(
+                            httpRequest = httpRequest,
+                            header = formatAmountRequest.header,
+                            errorCode = responseHelper.lookupErrorCode(ErrorCodes.INVALID_REQUEST_ERR.value),
+                            errorMessage = err.message!!))
+
+        } catch (err: Throwable) {
             FormatAmountResponse(
                     header = responseHelper.createFailureHeader(
                             httpRequest = httpRequest,
