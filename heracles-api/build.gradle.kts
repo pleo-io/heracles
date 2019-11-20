@@ -1,4 +1,5 @@
 import com.example.gradle.tasks.GenerateModelTask
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jmailen.gradle.kotlinter.tasks.LintTask
 
@@ -175,15 +176,29 @@ generateMappings.forEach {
 	generatorNames.add(name)
 }
 
-tasks.test {
-	useJUnitPlatform()
-}
-
 tasks.register("generateDTO") {
 	dependsOn(generatorNames)
 }
 
+tasks.test {
+	useJUnitPlatform()
+
+	// exclude integration tests as these are purely unit tests
+	exclude("io/pleo/heracles/integration/**")
+
+	testLogging {
+		exceptionFormat = TestExceptionFormat.FULL
+	}
+}
+
 tasks {
+	named<Test>("integrationTest") {
+		include("io.pleo.heracles.integration.IntegrationTest")
+		testLogging {
+			exceptionFormat = TestExceptionFormat.FULL
+		}
+	}
+
 	"lintKotlinMain"(LintTask::class) {
 		dependsOn("generateDTO")
 		doFirst {
