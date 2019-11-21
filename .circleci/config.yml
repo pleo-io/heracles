@@ -10,7 +10,7 @@ jobs:
       # copy code to cwd
       - run:
           name: copy heracles-api to cwd
-          command: ls && cp -r ./heracles-api .
+          command: ls
 
       # Download and cache dependencies
       - restore_cache:
