@@ -2,12 +2,14 @@ version: 2
 defaults: &defaults
   machine:
     image: circleci/classic:201708-01
+  working_directory: ~/heracles
 
-docker-setup: &docker_setup
+docker_setup: &docker-setup
   run:
     name: docker setup
     command: |
       docker info
+
 jobs:
   api-lint:
     <<: *defaults
