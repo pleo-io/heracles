@@ -7,15 +7,10 @@ jobs:
     steps:
       - checkout
 
-      # cd to dir
-      - run:
-          name: cd to heracles-api
-          command: cd heracles-api/
-
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -24,7 +19,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+          key: v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
 
       # run linting!
       - run:
