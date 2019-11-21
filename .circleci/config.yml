@@ -17,8 +17,12 @@ jobs:
             docker info
 
       - run:
+          name: build app
+          command: docker build heracles-api/. --tag heracles-api
+
+      - run:
           name: run linting
-          command: docker-compose run app ./bin/lint.sh
+          command: docker run heracles-api ./bin/lint.sh
 
   api-unit-test:
     docker:
