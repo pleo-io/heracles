@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2015", "es2017", "dom"],
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+    "outDir": "./dist",
+    "declarationDir": "./dist/types",
+    "jsx": "react",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "compileOnSave": true
+}
