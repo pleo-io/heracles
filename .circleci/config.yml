@@ -2,39 +2,18 @@ version: 2
 defaults: &defaults
   machine:
     image: circleci/classic:201708-01
+
+docker-setup: &docker_setup
+  run:
+    name: docker setup
+    command: |
+      docker info
 jobs:
   api-lint:
-    docker:
-      - image: circleci/openjdk:11.0.3-jdk-stretch
-        working_directory: ~/heracles-api
+    <<: *defaults
     steps:
       - checkout
-
-      # copy code to cwd
-      - run:
-          name: copy heracles-api to cwd
-          command: cp -a heracles-api/. .
-
-#      # Download and cache dependencies
-#      - restore_cache:
-#          keys:
-#            - v1-dependencies-{{ checksum "build.gradle" }}
-#            # fallback to using the latest cache if no exact match is found
-#            - v1-dependencies-
-#
-#      - run: gradle dependencies
-#
-#      - save_cache:
-#          paths:
-#            - ~/.gradle
-#          key: v1-dependencies-{{ checksum "build.gradle" }}
-      - run:
-          name: docker setup
-          command: |
-            [ ${NO_CHANGES:-0} -eq 1 ] && exit 0
-            docker info
-
-      # run linting!
+      - docker-setup
       - run:
           name: run linting
           command: docker-compose run app ./bin/lint.sh
