@@ -28,9 +28,10 @@ jobs:
 #          paths:
 #            - ~/.gradle
 #          key: v1-dependencies-{{ checksum "build.gradle" }}
-      -
-      - name: docker setup
+      - run:
+          name: docker setup
           command: |
+            [ ${NO_CHANGES:-0} -eq 1 ] && exit 0
             docker info
 
       # run linting!
