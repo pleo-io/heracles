@@ -10,7 +10,7 @@ jobs:
       # copy code to cwd
       - run:
           name: copy heracles-api to cwd
-          command: cp -r heracles-api/ .
+          command: ls && cp -r ./heracles-api .
 
       # Download and cache dependencies
       - restore_cache:
@@ -93,7 +93,7 @@ jobs:
 
   ui-lint:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:10.16.3
         working_directory: ~/heracles-ui
     steps:
       - checkout
@@ -124,7 +124,7 @@ jobs:
 
   ui-unit-test:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:10.16.3
         working_directory: ~/heracles-ui
     steps:
       - checkout
@@ -155,7 +155,7 @@ jobs:
 
   end-to-end-test:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:10.16.3
         working_directory: ~/heracles-ui
     steps:
       - checkout
