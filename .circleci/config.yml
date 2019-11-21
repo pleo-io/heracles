@@ -10,7 +10,7 @@ jobs:
       # copy code to cwd
       - run:
           name: copy heracles-api to cwd
-          command: cp -a /heracles-api/. .
+          command: cp -a heracles-api/. .
 
       # Download and cache dependencies
       - restore_cache:
@@ -41,7 +41,7 @@ jobs:
       # copy code to cwd
       - run:
           name: copy heracles-api to cwd
-          command: cp -a /heracles-api/. .
+          command: cp -a heracles-api/. .
 
       # Download and cache dependencies
       - restore_cache:
@@ -71,7 +71,7 @@ jobs:
       # copy code to cwd
       - run:
           name: copy heracles-api to cwd
-          command: cp -a /heracles-api/. .
+          command: cp -a heracles-api/. .
 
       # Download and cache dependencies
       - restore_cache:
@@ -101,7 +101,7 @@ jobs:
       # copy code to cwd
       - run:
           name: copy heracles-api to cwd
-          command: cp -a /heracles-ui/. .
+          command: cp -a heracles-ui/. .
 
       # Download and cache dependencies
       - restore_cache:
@@ -132,7 +132,7 @@ jobs:
       # copy code to cwd
       - run:
           name: copy heracles-api to cwd
-          command: cp -a /heracles-ui/. .
+          command: cp -a heracles-ui/. .
 
       # Download and cache dependencies
       - restore_cache:
@@ -163,7 +163,7 @@ jobs:
       # copy code to cwd
       - run:
           name: copy heracles-api to cwd
-          command: cp -a /heracles-ui/. .
+          command: cp -a heracles-ui/. .
 
       # Download and cache dependencies
       - restore_cache:
