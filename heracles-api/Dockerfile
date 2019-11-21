@@ -18,8 +18,6 @@ RUN ./gradlew clean assemble
 # image 2 - execution
 FROM openjdk:11-jdk
 
-RUN apt install -y netcat
-
 ENV APP_HOME=/usr/app/
 
 WORKDIR $APP_HOME

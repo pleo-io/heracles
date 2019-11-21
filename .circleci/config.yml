@@ -1,4 +1,7 @@
 version: 2
+defaults: &defaults
+  machine:
+    image: circleci/classic:201708-01
 jobs:
   api-lint:
     docker:
@@ -29,7 +32,7 @@ jobs:
       # run linting!
       - run:
           name: run linting
-          command: ./bin/lint.sh
+          command: docker-compose run app ./bin/lint.sh
 
   api-unit-test:
     docker:
