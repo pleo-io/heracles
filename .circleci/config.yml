@@ -10,7 +10,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -19,7 +19,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+          key: v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
 
       # run linting!
       - run:
@@ -33,10 +33,48 @@ jobs:
     steps:
       - checkout
 
-      # run linting!
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
       - run:
           name: run linting
           command: cd heracles-api/ && ./bin/unit-test.sh
+
+  api-integration-test:
+    docker:
+      - image: circleci/openjdk:8-jdk
+        working_directory: ~/heracles-api
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run:
+          name: run linting
+          command: cd heracles-api/ && ./bin/integration-test.sh
 
 workflows:
   version: 2
@@ -44,3 +82,4 @@ workflows:
     jobs:
       - api-lint
       - api-unit-test
+      - api-integration-test

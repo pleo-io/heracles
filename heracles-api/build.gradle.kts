@@ -1,6 +1,7 @@
 import com.example.gradle.tasks.GenerateModelTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 plugins {
@@ -191,14 +192,31 @@ tasks.test {
 	}
 }
 
-tasks {
-	named<Test>("integrationTest") {
-		include("io.pleo.heracles.integration.IntegrationTest")
-		testLogging {
-			exceptionFormat = TestExceptionFormat.FULL
+sourceSets {
+	create("integrationTest") {
+		withConvention(KotlinSourceSet::class) {
+			kotlin.srcDir("$rootDir/src/test/kotlin/io/pleo/heracles/integration")
+			resources.srcDir("$rootDir/src/test/resources")
+			compileClasspath += sourceSets["main"].output + configurations["testRuntimeClasspath"]
+			runtimeClasspath += output + compileClasspath + sourceSets["test"].runtimeClasspath
 		}
 	}
+}
 
+task<Test>("integrationTest") {
+	description = "Runs the integration tests"
+	group = "verification"
+	testClassesDirs = sourceSets["integrationTest"].output.classesDirs
+	classpath = sourceSets["integrationTest"].runtimeClasspath
+
+	useJUnitPlatform()
+
+	testLogging {
+		exceptionFormat = TestExceptionFormat.FULL
+	}
+}
+
+tasks {
 	"lintKotlinMain"(LintTask::class) {
 		dependsOn("generateDTO")
 		doFirst {
@@ -244,6 +262,7 @@ tasks.jacocoTestReport {
 				}
 		)
 	}
+
 	reports {
 		val mainSrc = "$rootDir/src/main/kotlin"
 		val tree = fileTree("$rootDir/build/classes")
@@ -285,7 +304,7 @@ tasks.jacocoTestCoverageVerification {
 	violationRules {
 		rule {
 			limit {
-				minimum = "0.8".toBigDecimal()
+				minimum = "0.7".toBigDecimal()
 			}
 		}
 	}
@@ -295,7 +314,7 @@ val testCoverage by tasks.registering {
 	group = "verification"
 	description = "Runs the unit tests with coverage."
 
-	dependsOn(":generate", ":test", ":jacocoTestReport", ":jacocoTestCoverageVerification")
+	dependsOn(":generateDTO", ":test", ":jacocoTestReport", ":jacocoTestCoverageVerification")
 	val jacocoTestReport = tasks.findByName("jacocoTestReport")
 	jacocoTestReport?.mustRunAfter(tasks.findByName("test"))
 	tasks.findByName("jacocoTestCoverageVerification")?.mustRunAfter(jacocoTestReport)
