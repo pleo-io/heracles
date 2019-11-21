@@ -16,9 +16,14 @@ jobs:
             [ ${NO_CHANGES:-0} -eq 1 ] && exit 0
             docker info
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -a heracles-api/. .
+
       - run:
           name: build app
-          command: docker build heracles-api/. --tag heracles-api
+          command: docker build . --tag heracles-api
 
       - run:
           name: run linting
@@ -36,23 +41,13 @@ jobs:
           name: copy heracles-api to cwd
           command: cp -a heracles-api/. .
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: gradle dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+      - run:
+          name: build app
+          command: docker build . --tag heracles-api
 
       - run:
           name: run linting
-          command: ./bin/unit-test.sh
+          command: docker run heracles-api ./bin/unit-test.sh
 
   api-integration-test:
     docker:
@@ -66,23 +61,13 @@ jobs:
           name: copy heracles-api to cwd
           command: cp -a heracles-api/. .
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: gradle dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+      - run:
+          name: build app
+          command: docker build . --tag heracles-api
 
       - run:
           name: run linting
-          command: ./bin/integration-test.sh
+          command: docker run heracles-api ./bin/integration-test.sh
 
   ui-lint:
     docker:
