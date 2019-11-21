@@ -1,13 +1,14 @@
 import axios from "axios";
 import uuid from "uuid/v4";
 import Urls from "../resources/Urls";
-declare var tsConfig: any;
+
+declare const tsConfig: any;
 
 export default class FormatAmountService {
 
     public static formatAmount(data: any = {}) {
-        let url = `${Urls.FORMAT_AMOUNT_URL}`;
-        let headers = FormatAmountService.getHeaders()
+        const url = `${Urls.FORMAT_AMOUNT_URL}`;
+        const headers = FormatAmountService.getHeaders()
 
         const instance = axios.create({
             headers: headers,
@@ -20,7 +21,6 @@ export default class FormatAmountService {
         };
 
         return instance.post(url, data)
-        // return "KES 1,000.99"
     }
 
     private static getHeaders = () => {

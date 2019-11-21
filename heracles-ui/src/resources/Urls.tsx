@@ -1,4 +1,4 @@
-declare var tsConfig: any;
+declare const tsConfig: any;
 
 export default class Urls {
 

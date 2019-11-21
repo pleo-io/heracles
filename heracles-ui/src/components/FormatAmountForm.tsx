@@ -17,7 +17,7 @@ import Container from '@material-ui/core/Container';
 import FormatAmountService from '../services/FormatAmountService'
 import Error from "../utils/Error";
 
-declare var tsConfig: any;
+declare const tsConfig: any;
 
 function Copyright() {
   return (
@@ -115,9 +115,9 @@ export default class FormatAmountForm extends React.Component<Props, State> {
     this.clearErrors();
   }
 
-  public componentDidMount() {
-
-  }
+  // public componentDidMount() {
+  //
+  // }
 
   public render() {
     const { submitSuccess } = this.state;
@@ -142,7 +142,7 @@ export default class FormatAmountForm extends React.Component<Props, State> {
               {/* currency field*/}
               <Grid item xs={12}>
                 {this.fieldErrors("currency").map((error) => {
-                  return <span className="error">{error.error}</span>;
+                  return <span className="error" key={error.error}>{error.error}</span>
                 })}
                 <TextField
                     variant="outlined"
@@ -170,7 +170,7 @@ export default class FormatAmountForm extends React.Component<Props, State> {
               {/* value field*/}
               <Grid item xs={12}>
                 {this.fieldErrors("value").map((error) => {
-                  return <span className="error">{error.error}</span>;
+                  return <span className="error" key={error.error}>{error.error}</span>;
                 })}
                 <TextField
                     variant="outlined"
@@ -198,7 +198,7 @@ export default class FormatAmountForm extends React.Component<Props, State> {
               {/* precision field*/}
               <Grid item xs={12}>
                 {this.fieldErrors("precision").map((error) => {
-                  return <span className="error">{error.error}</span>;
+                  return <span className="error" key={error.error}>{error.error}</span>;
                 })}
                 <TextField
                     variant="outlined"

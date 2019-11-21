@@ -7,6 +7,11 @@ jobs:
     steps:
       - checkout
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -r heracles-api/ .
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -33,6 +38,11 @@ jobs:
     steps:
       - checkout
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -r heracles-api/ .
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -57,6 +67,11 @@ jobs:
         working_directory: ~/heracles-api
     steps:
       - checkout
+
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -r heracles-api/ .
 
       # Download and cache dependencies
       - restore_cache:

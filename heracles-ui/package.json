@@ -24,8 +24,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --mode=production",
-    "unit-test": "",
-    "lint": "tslint './src/**/*.ts*' --format stylish --project . --force"
+    "unit-test": "jest",
+    "lint": "eslint \"**/*.tsx\" --ignore-pattern node_modules/"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -60,22 +60,25 @@
     "@material/react-snackbar": "^0.14.1",
     "@material/react-top-app-bar": "^0.14.1",
     "@material/theme": "^3.0.0",
-    "@types/jest": "24.0.22",
-    "@types/node": "12.12.7",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.0.0",
+    "eslint": "^6.6.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0",
     "sass-loader": "^7.1.0",
+    "ts-jest": "^24.1.0",
     "ts-loader": "^6.0.4",
     "tslint": "^5.20.1",
-    "typescript": "3.7.2",
+    "typescript": "^3.7.2",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
