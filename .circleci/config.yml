@@ -29,7 +29,7 @@ jobs:
       # run linting!
       - run:
           name: run linting
-          command: cd heracles-api/ && ./bin/lint.sh
+          command: ./bin/lint.sh
 
   api-unit-test:
     docker:
@@ -59,7 +59,7 @@ jobs:
 
       - run:
           name: run linting
-          command: cd heracles-api/ && ./bin/unit-test.sh
+          command: ./bin/unit-test.sh
 
   api-integration-test:
     docker:
@@ -89,7 +89,7 @@ jobs:
 
       - run:
           name: run linting
-          command: cd heracles-api/ && ./bin/integration-test.sh
+          command: ./bin/integration-test.sh
 
   ui-lint:
     docker:
@@ -98,6 +98,11 @@ jobs:
     steps:
       - checkout
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -r heracles-ui/ .
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -115,7 +120,7 @@ jobs:
       # run linting!
       - run:
           name: run linting
-          command: cd heracles-ui/ && ./bin/lint.sh
+          command: ./bin/lint.sh
 
   ui-unit-test:
     docker:
@@ -124,6 +129,11 @@ jobs:
     steps:
       - checkout
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -r heracles-ui/ .
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -141,7 +151,7 @@ jobs:
       # run linting!
       - run:
           name: run linting
-          command: cd heracles-ui/ && ./bin/unit-test.sh
+          command: ./bin/unit-test.sh
 
   end-to-end-test:
     docker:
@@ -150,6 +160,11 @@ jobs:
     steps:
       - checkout
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -r heracles-ui/ .
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -167,7 +182,7 @@ jobs:
       # run linting!
       - run:
           name: run linting
-          command: cd heracles-ui/ && ./bin/e2e-test.sh
+          command: ./bin/e2e-test.sh
 
 workflows:
   version: 2
