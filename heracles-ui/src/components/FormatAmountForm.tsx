@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Money from '@material-ui/icons/Money';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -18,7 +18,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Heracles
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -51,29 +51,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+export default function FormatAmountForm() {
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <Money />
         </Avatar>
+
         <Typography component="h1" variant="h5">
-          Sign in
+          Format Amount
         </Typography>
+
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
+            id="currency"
+            label="currency"
             name="email"
-            autoComplete="email"
+            type="text"
+            autoComplete=""
             autoFocus
           />
           <TextField
@@ -81,15 +85,22 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+            name="value"
+            label="value"
+            type="text"
+            id="value"
+            autoComplete=""
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+          <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="precision"
+              label="precision"
+              type="text"
+              id="precision"
+              autoComplete=""
           />
           <Button
             type="submit"
@@ -98,22 +109,24 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Format
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
+
+          {/*<Grid container>*/}
+          {/*  <Grid item xs>*/}
+          {/*    <Link href="#" variant="body2">*/}
+          {/*      Forgot password?*/}
+          {/*    </Link>*/}
+          {/*  </Grid>*/}
+          {/*  <Grid item>*/}
+          {/*    <Link href="#" variant="body2">*/}
+          {/*      {"Don't have an account? Sign Up"}*/}
+          {/*    </Link>*/}
+          {/*  </Grid>*/}
+          {/*</Grid>*/}
         </form>
       </div>
+
       <Box mt={8}>
         <Copyright />
       </Box>

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SignInSide from './components/SiginIn';
+import FormatAmountForm from './components/FormatAmountForm';
 
 ReactDOM.render(
-  <SignInSide />,
+  <FormatAmountForm />,
   document.querySelector('#root'),
 );
