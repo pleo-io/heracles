@@ -1,0 +1,18 @@
+version: "3.4"
+services:
+  app:
+    build:
+      context: heracles-api/.
+      target: "${DOCKER_STAGE}"
+    container_name: heracles-api
+    volumes:
+      - .:/usr/app
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  ui:
+    build:
+      context: heracles-ui/.
+    container_name: heracles-ui
+    volumes:
+      - .:/usr/app
+      - /var/run/docker.sock:/var/run/docker.sock

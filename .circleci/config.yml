@@ -1,92 +1,90 @@
 version: 2
+defaults: &defaults
+  machine:
+    image: circleci/classic:201708-01
+  working_directory: ~/heracles
+
 jobs:
   api-lint:
-    docker:
-      - image: circleci/openjdk:11-jdk
-        working_directory: ~/heracles-api
+    <<: *defaults
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      - run:
+          name: docker setup
+          command: |
+            [ ${NO_CHANGES:-0} -eq 1 ] && exit 0
+            docker info
 
-      - run: gradle dependencies
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -a heracles-api/. .
 
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
+      - run:
+          name: build app
+          command: docker build . --tag heracles-api
 
-      # run linting!
       - run:
           name: run linting
-          command: cd heracles-api/ && ./bin/lint.sh
+          command: docker run heracles-api ./bin/lint.sh
 
   api-unit-test:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/openjdk:11.0.3-jdk-stretch
         working_directory: ~/heracles-api
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -a heracles-api/. .
 
-      - run: gradle dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
+      - run:
+          name: build app
+          command: docker build . --tag heracles-api
 
       - run:
           name: run linting
-          command: cd heracles-api/ && ./bin/unit-test.sh
+          command: docker run heracles-api ./bin/unit-test.sh
 
   api-integration-test:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/openjdk:11.0.3-jdk-stretch
         working_directory: ~/heracles-api
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -a heracles-api/. .
 
-      - run: gradle dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "heracles-api/build.gradle" }}
+      - run:
+          name: build app
+          command: docker build . --tag heracles-api
 
       - run:
           name: run linting
-          command: cd heracles-api/ && ./bin/integration-test.sh
+          command: docker run heracles-api ./bin/integration-test.sh
 
   ui-lint:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:10.16.3
         working_directory: ~/heracles-ui
     steps:
       - checkout
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -a heracles-ui/. .
+
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "heracles-ui/package.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -95,24 +93,29 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "heracles-ui/package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
 
       # run linting!
       - run:
           name: run linting
-          command: cd heracles-ui/ && ./bin/lint.sh
+          command: ./bin/lint.sh
 
   ui-unit-test:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:10.16.3
         working_directory: ~/heracles-ui
     steps:
       - checkout
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -a heracles-ui/. .
+
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "heracles-ui/package.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -121,24 +124,29 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "heracles-ui/package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
 
       # run linting!
       - run:
           name: run linting
-          command: cd heracles-ui/ && ./bin/unit-test.sh
+          command: ./bin/unit-test.sh
 
   end-to-end-test:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:10.16.3
         working_directory: ~/heracles-ui
     steps:
       - checkout
 
+      # copy code to cwd
+      - run:
+          name: copy heracles-api to cwd
+          command: cp -a heracles-ui/. .
+
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "heracles-ui/package.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -147,12 +155,12 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "heracles-ui/package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
 
       # run linting!
       - run:
           name: run linting
-          command: cd heracles-ui/ && ./bin/e2e-test.sh
+          command: ./bin/e2e-test.sh
 
 workflows:
   version: 2

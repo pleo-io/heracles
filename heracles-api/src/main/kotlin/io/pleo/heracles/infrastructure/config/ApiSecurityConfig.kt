@@ -57,10 +57,12 @@ class ApiSecurityConfig : WebSecurityConfigurerAdapter() {
     @Throws(Exception::class)
     override fun configure(httpSecurity: HttpSecurity) {
         httpSecurity.cors()
-        httpSecurity.antMatcher(antPattern).csrf().disable().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().addFilter(apiAuthenticationFilter())
-                .authorizeRequests().anyRequest().authenticated().and().exceptionHandling()
-                .authenticationEntryPoint(restAuthenticationEntryPoint)
+        httpSecurity
+                .antMatcher(antPattern)
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilter(apiAuthenticationFilter()).authorizeRequests().anyRequest().authenticated()
+                .and().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint)
     }
 
     fun apiAuthenticationFilter(): ApiKeyAuthFilter? {

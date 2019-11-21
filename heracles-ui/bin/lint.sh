@@ -2,5 +2,4 @@
 
 set -e
 
-# npm lint
-tslint './src/**/*.ts*' --format stylish --project . --force
+npm run lint
