@@ -9,5 +9,9 @@ module.exports = {
         "ts-jest": {
             tsConfig: "tsconfig.json"
         }
-    }
+    },
+    "moduleNameMapper": {
+        "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+    },
+    testPathIgnorePatterns: ['__tests__/*', 'test-setup.tsx']
 }

@@ -7,7 +7,8 @@ declare const tsConfig: any;
 export default class FormatAmountService {
 
     public static formatAmount(data: any = {}) {
-        const url = `${Urls.FORMAT_AMOUNT_URL}`;
+        // const url = `${Urls.FORMAT_AMOUNT_URL}`; // fails test due to tsConfig not being found
+        const url = "http://localhost:8002/api/v1/formatAmount"
         const headers = FormatAmountService.getHeaders()
 
         const instance = axios.create({

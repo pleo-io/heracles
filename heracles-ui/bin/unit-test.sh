@@ -2,4 +2,4 @@
 
 set -e
 
-npm run unit-test
+npm run test

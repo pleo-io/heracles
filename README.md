@@ -80,7 +80,7 @@ correctness of these building blocks. They are meant to be fast as they mock out
     
     To run these tests use:
     
-    ```gradle test``` on the kotlin backend and ```npm run unit-test``` on the react frontend. Make sure to be on the
+    ```gradle test``` on the kotlin backend and ```npm run test``` on the react frontend. Make sure to be on the
     correct directory
     
 Unit tests form the bulk of tests written here as they are cheap in effort and cover more contained scopes.

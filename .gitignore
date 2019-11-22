@@ -41,3 +41,5 @@ gradle/
 /public/env-config.js
 env-config.js
 dist/
+
+**/__snapshots__/**

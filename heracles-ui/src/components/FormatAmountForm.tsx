@@ -138,6 +138,7 @@ export default class FormatAmountForm extends React.Component<Props, State> {
                 className=""
                 onSubmit={(e) => { this.handleSubmit(e); }}
                 noValidate={true}
+                id="formatAmountForm"
             >
               {/* currency field*/}
               <Grid item xs={12}>
