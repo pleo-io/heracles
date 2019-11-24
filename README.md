@@ -39,6 +39,16 @@ This needs to be a "fully working application" (you choose the format: web, cli,
   - *eg: You handle funky unicode strings (eg: [big list of naughty strings](https://github.com/minimaxir/big-list-of-naughty-strings))*
 - You show us how you run your tests in CI/CD
   
+## Tasks:
+
+- [ ] Create Backend App
+- [ ] Create Frontend App
+- [ ] Add Backend Test Cases
+- [ ] Add Frontend Test Cases
+
+## Implementation Notes:
+In progress...
+
 ## Instructions:
 
 Fork this repo with your solution. We want to see your progression through commits (don’t commit the entire solution in 1 step) and don't forget to create a `README.md` to explain your thought process and also provide instructions on how to run the tests.
