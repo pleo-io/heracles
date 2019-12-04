@@ -27,7 +27,7 @@ describe("Unit Test", () => {
             })
         })
 
-        test("should fuzz test endpointTests for numbers between 0 and 999", async () => {
+        test("should fuzz test endpoint for numbers between 0 and 999", async () => {
             const input = Math.floor(Math.random() * 999)
             const response = await request(app)
                 .post('/formatMoney')
@@ -36,7 +36,7 @@ describe("Unit Test", () => {
             expect(response.body.value).toBe(`${input}.00`)
         })
 
-        test("should fuzz test endpoints for numbers between 1000 and 9999", async () => {
+        test("should fuzz test endpoint for numbers between 1000 and 9999", async () => {
             const input = (Math.floor(Math.random() * 8999) + 1000)
             const inputString = input.toString()
             const expectedOutput = `${inputString
@@ -49,7 +49,7 @@ describe("Unit Test", () => {
             expect(response.body.value).toBe(expectedOutput)
         })
 
-        test("should fuzz test endpoints for numbers between 1000000 and 9999999", async () => {
+        test("should fuzz test endpoint for numbers between 1000000 and 9999999", async () => {
             const input = (Math.floor(Math.random() * 8999999) + 1000000)
             const inputString = input.toString()
             const expectedOutput = `${inputString
