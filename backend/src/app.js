@@ -31,9 +31,24 @@ app.post('/formatMoney', validator.body(objectValidator), (req, res) => {
 
   const value = parseFloat(req.body.value)
   const integerPart = Math.floor(value)
+
+  /*
+
+    fractionPart example: value = 3.21
+      ~ first line applies transformation to 0.21
+      ~ second line applies transformation to '0.21'
+      ~ third line applies transformation to '.21'
+
+  */
   const fractionPart = (value - integerPart).toFixed(2)
       .toString()
       .substring(1)
+
+  /* reverseAndSpaceInteger example: integerPart = '3000'
+      1. Reverts string ('0003')
+      2. Adds space every 3 characters ('000 3')
+      3. Trim if needed (there may be spaces)
+  */
 
   const reversedAndSpacedIntegerPart = R
       .reverse(integerPart.toString())
@@ -41,6 +56,9 @@ app.post('/formatMoney', validator.body(objectValidator), (req, res) => {
       .trim()
 
   const treatedIntegerPart = R.reverse(reversedAndSpacedIntegerPart)
+
+  //Reverted it back, now concatenate and return!
+
   return res
       .status(200)
       .send({value: `${treatedIntegerPart}${fractionPart}`})
