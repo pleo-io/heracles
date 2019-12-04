@@ -1,0 +1,10 @@
+# general
+
+.idea
+
+# backend
+
+./backend/node_modules
+./backend/.idea
+
+# frontend
