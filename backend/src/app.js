@@ -1,5 +1,8 @@
 const express = require('express');
+const Joi = require('joi')
 const bodyParser = require('body-parser');
+const validator = require('express-joi-validation').createValidator({})
+const R = require("ramda")
 
 const app = express();
 
@@ -20,13 +23,27 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post('/formatMoney', (req, res) => {
+const objectValidator = Joi.object({
+  value: Joi.number().min(0).required()
+})
 
-  const {value} = req.body;
+app.post('/formatMoney', validator.body(objectValidator), (req, res) => {
 
+  const value = parseFloat(req.body.value)
+  const integerPart = Math.floor(value)
+  const fractionPart = (value - integerPart).toFixed(2)
+      .toString()
+      .substring(1)
+
+  const reversedAndSpacedIntegerPart = R
+      .reverse(integerPart.toString())
+      .replace(/(.{3})/g, '$1 ')
+      .trim()
+
+  const treatedIntegerPart = R.reverse(reversedAndSpacedIntegerPart)
   return res
       .status(200)
-      .send({value})
+      .send({value: `${treatedIntegerPart}${fractionPart}`})
 });
 
 module.exports = {app};
