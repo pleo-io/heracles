@@ -1,15 +1,23 @@
 import React, {Component} from 'react'
-
+import {formatMoney} from '../requesters/formatMoney'
 class FormatMoneyComponent extends Component {
 
-
     state = {
-        value: undefined
+        value: undefined,
+        received: undefined
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault()
-        console.log('This is the current state: ', this.state.value)
+        try {
+            const res = await formatMoney({value: this.state.value})
+            this.setState({received: res.data.value})
+            console.log('Input: ', this.state.value)
+            console.log('Output: ', res.data.value)
+        } catch {
+            this.setState({received: "Error"})
+            console.log(`Error by sending input ${this.state.value}`)
+        }
     }
 
     handleChange(event){
