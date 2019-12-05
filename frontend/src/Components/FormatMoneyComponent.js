@@ -12,11 +12,8 @@ class FormatMoneyComponent extends Component {
         try {
             const res = await formatMoney({value: this.state.value})
             this.setState({received: res.data.value})
-            console.log('Input: ', this.state.value)
-            console.log('Output: ', res.data.value)
         } catch {
             this.setState({received: "Error"})
-            console.log(`Error by sending input ${this.state.value}`)
         }
     }
 
@@ -36,6 +33,11 @@ class FormatMoneyComponent extends Component {
                     <input type="number" onChange={this.handleChange.bind(this)}/>
                     <button onClick={this.handleSubmit.bind(this)}>Send</button>
                 </form>
+                {
+                    this.state.received === ("Error" || undefined)
+                        ? <h2 test-id={"Error"} style={{'color': '#b22222'}}>{this.state.received}</h2>
+                        : this.state.received && <h2 test-id={"ok"}>{this.state.received}</h2>
+                }
             </div>
         )}
 }
