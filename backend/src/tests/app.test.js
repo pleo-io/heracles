@@ -7,8 +7,10 @@ describe("Unit Test", () => {
         const arrayOfInputAndOutputs = [
             {input: 0, output: "0.00"},
             {input: 0.01, output: "0.01"},
+            {input: 0.006, output: "0.01"},
+            {input: 0.005, output: "0.01"},
+            {input: 0.004, output: "0.00"},
             {input: 3, output: "3.00"},
-            {input: 0.001, output: "0.00"},
             {input: "1e+0", output: "1.00"},
             {input: 1.16934234, output: "1.17"},
             {input: 1000, output: "1 000.00"},
