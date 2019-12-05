@@ -13,7 +13,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "env-local": "node ./node_modules/app-json-env-gen/cli.js target=local output=./src/env.js"
+    "env-local": "node ./node_modules/app-json-env-gen/cli.js target=local output=./src/env.js",
+    "env-pact": "node ./node_modules/app-json-env-gen/cli.js target=pact output=./src/env.js",
+    "test-pact": "jest ./src/tests/contractTests/**.pact.test.js -i --setupFiles=./pactSetup.js --setupTestFrameworkScriptFile=./pactTestWrapper.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,6 +33,7 @@
     ]
   },
   "devDependencies": {
+    "@pact-foundation/pact": "^9.5.0",
     "app-json-env-gen": "^0.6.0"
   }
 }
