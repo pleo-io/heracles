@@ -12,3 +12,5 @@
 
 ./frontend/node_modules
 ./frontend/src/env.js
+./frontend/logs/
+./frontend/pacts/

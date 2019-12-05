@@ -7,7 +7,7 @@ module.exports = function(config) {
     transpilers: [],
     coverageAnalysis: "off",
     files: [
-      "src/tests/app.test.js",
+      "src/tests/functionalTests/app.test.js",
       "src/app.js"
     ],
     mutate: [

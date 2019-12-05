@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest --testPathPattern='./src/tests/'",
+    "test": "jest --testPathPattern='./src/tests/functionalTests'",
+    "test-pact": "jest --testPathPattern='src/tests/contractTests' --runInBand",
     "mutation-test": "stryker run"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "ramda": "^0.26.1"
   },
   "devDependencies": {
+    "@pact-foundation/pact": "^9.5.0",
     "@stryker-mutator/core": "^2.4.0",
     "@stryker-mutator/html-reporter": "^2.4.0",
     "@stryker-mutator/javascript-mutator": "^2.4.0",
