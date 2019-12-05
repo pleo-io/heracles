@@ -170,4 +170,15 @@ describe("Unit Test", () => {
             expect(response.status).toBe(400)
         })
     })
+
+    /*
+   There's definitely room for improvement here:
+   ~ Tests manipulating headers, especially CORS (I have set CORS to '*', but in real life that can lead to exploits!);
+   ~ More fuzz testing;
+   ~ Test assertions for messages;
+   ~ [...]
+
+   (Fun fact: Mutation testing actually gets the first point to be improved!)
+  */
+
 })

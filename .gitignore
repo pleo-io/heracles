@@ -6,6 +6,7 @@
 
 ./backend/node_modules
 ./backend/.idea
+./backend/reports/
 
 # frontend
 
