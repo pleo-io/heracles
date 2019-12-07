@@ -11,7 +11,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest ./src/tests/unitTests/**.test.js",
     "eject": "react-scripts eject",
     "env-local": "node ./node_modules/app-json-env-gen/cli.js target=local output=./src/env.js",
     "env-pact": "node ./node_modules/app-json-env-gen/cli.js target=pact output=./src/env.js",
@@ -33,7 +33,15 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.5",
+    "@babel/preset-env": "^7.7.5",
     "@pact-foundation/pact": "^9.5.0",
-    "app-json-env-gen": "^0.6.0"
+    "@testing-library/react": "^9.3.2",
+    "app-json-env-gen": "^0.6.0",
+    "babel-jest": "^24.9.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1"
   }
 }
