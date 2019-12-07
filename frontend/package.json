@@ -11,7 +11,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest ./src/tests/unitTests/**.test.js",
+    "test": "jest ./src/tests/unitTests/**.test.js --config=jest.config.js",
     "eject": "react-scripts eject",
     "env-local": "node ./node_modules/app-json-env-gen/cli.js target=local output=./src/env.js",
     "env-pact": "node ./node_modules/app-json-env-gen/cli.js target=pact output=./src/env.js",
@@ -42,6 +42,7 @@
     "app-json-env-gen": "^0.6.0",
     "babel-jest": "^24.9.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1"
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3"
   }
 }
