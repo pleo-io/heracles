@@ -13,11 +13,11 @@ export default function() {
     group("Load test file", function() {
         let req, res;
         let url = 'https://www.google.com';
-        res = http.get(req);
+        res = http.get(url);
 
         check(res, {
             "status code is correct": r => r.status === (200)
         }) || incorrectStatusCode.add(1);
-        sleep(3);
+        sleep(5);
     });
 }
