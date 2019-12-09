@@ -51,7 +51,7 @@ Now it's time to check for integration.
 
 Best thing since sliced bread: It tests integration without actually deploying the apps. In other words, we don't need to set the house on fire to test the fire alarm. I used Pact.io
 
-This is great for testing complex microservices architecture. I heard pleo uses kafka, so I wanted to make sure I would show off those as well, although I am not an expert at it (yet!)
+Contract Testing is great for testing complex microservices architecture. I heard pleo uses kafka, so I wanted to make sure I would show off Contract Testing as well, although I am not an expert at it (yet!)
 
 ##### Implementation steps for the Consumer-Driven Contracts
 
