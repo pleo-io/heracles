@@ -25,20 +25,21 @@ class FormatMoneyComponent extends Component {
 
     render(){
         return (
-            <div>
+            <form onSubmit = {this.handleSubmit.bind(this)}>
                 <div>
                     <h1>Format money</h1>
                 </div>
-                <form>
-                    <input type="number" onChange={this.handleChange.bind(this)}/>
-                    <button onClick={this.handleSubmit.bind(this)}>Send</button>
-                </form>
+                <div>
+                    <label htmlFor="numberInput">Input</label>
+                    <input id="numberInput" type="number" onChange={this.handleChange.bind(this)}/>
+                    <button type="submit">Send</button>
+                </div>
                 {
                     this.state.received === ("Error" || undefined)
                         ? <h2 test-id={"Error"} style={{'color': '#b22222'}}>{this.state.received}</h2>
                         : this.state.received && <h2 test-id={"ok"}>{this.state.received}</h2>
                 }
-            </div>
+            </form>
         )}
 }
 
