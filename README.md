@@ -100,3 +100,6 @@ It's integrated with InfluxDB, and its results are displayed with Grafana. At gr
 - Test for different loads and duration (for eg. soak tests);
 
 
+And that's it! I think it's looking good. Maybe I'd add lint + husky + pre-commit hooks to each repository. I think it's very helpful on delivering good code.
+
+
