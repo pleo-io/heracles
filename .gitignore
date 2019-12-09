@@ -1,0 +1,5 @@
+app/backend/.gradle
+app/backend/.idea
+app/backend/build
+app/backend/gradle
+app/backend/out
