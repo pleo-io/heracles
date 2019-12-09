@@ -8,7 +8,7 @@ ____________________________________
 
 ### My thought process
 
-I like the Shift-Left approach. In other words, test early, test often. Also, for this challenge, I figured out that the traditional test pyramid (more unit tests, a bit less integration tests, and only few e2e tests) would do great.
+I like the Shift-Left approach. In other words, test early, test often. Also, for this challenge, I figured out that the traditional test pyramid would do great (more unit tests, a bit less integration tests, and only few e2e tests).
 
 #### Backend
 
