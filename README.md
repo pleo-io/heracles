@@ -10,9 +10,9 @@ ____________________________________
 
 I like the Shift-Left approach. In other words, test early, test often. Also, for this challenge, I figured out that the traditional test pyramid would do great (more unit tests, a bit less integration tests, and only few e2e tests).
 
-#### Backend
-
 I have decided to go for backend-frontend solution, because I wanted to show off some e2e assertions and performance testing. (:
+
+#### Backend
 
 Backend was created with express generator. And I did it TDD-style.
 
