@@ -10,11 +10,15 @@ class FormatMoneyComponent extends Component {
     async handleSubmit(event) {
         event.preventDefault()
         try {
-            const res = await formatMoney({value: this.state.value})
+            const res = await this.handleFormatMoney({value: this.state.value})
             this.setState({received: res.data.value})
         } catch {
             this.setState({received: "Error"})
         }
+    }
+
+    async handleFormatMoney(value) {
+        return await formatMoney({value})
     }
 
     handleChange(event){

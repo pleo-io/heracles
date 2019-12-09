@@ -32,7 +32,6 @@ describe('Format money Home page', () => {
       expect(Homepage.errorMessage.getText()).to.equal(expectedOutput)
       expect(Homepage.errorMessage.getCssProperty('color').value).to.equal(redRGBA)
       })
-
   })
 
 })
