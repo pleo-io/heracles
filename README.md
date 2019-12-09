@@ -43,7 +43,7 @@ For the front-end, I used react-create-app for a simple reactive app.
 ##### What I would add or improve
 - More unit tests, especially for handleSubmit method;
 - Snapshot testing when the error message is rendered;
-- Stryker (mutation testing) is also possible at the front-end.
+- Mutation testing is also possible at the front-end, and Stryker does it fine.
 
 Now it's time to check for integration.
 
