@@ -8,11 +8,11 @@ ____________________________________
 
 ### My thought process
 
-I like the Shift-Left approach. In other words, test early, test often. Also, for this challenge, I figured out that the traditional test pyramid (more unit tests, a bit less integration tests, and only few e2e tests) would do great.
-
-####Backend
+I like the Shift-Left approach. In other words, test early, test often. Also, for this challenge, I figured out that the traditional test pyramid would do great (more unit tests, a bit less integration tests, and only few e2e tests).
 
 I have decided to go for backend-frontend solution, because I wanted to show off some e2e assertions and performance testing. (:
+
+#### Backend
 
 Backend was created with express generator. And I did it TDD-style.
 
@@ -28,11 +28,11 @@ Backend was created with express generator. And I did it TDD-style.
 
 Everything went well? OK, good. Let's move to the front-end.
 
-####Frontend
+#### Frontend
 
 For the front-end, I used react-create-app for a simple reactive app.
 
-#####Implementation steps for the frontend
+##### Implementation steps for the frontend
 - On input change, it should set state for the value;
 - On form submit, it should fire the POST request to the backend;
 - If the request is valid, it should render an element with the formatted string;
@@ -43,17 +43,17 @@ For the front-end, I used react-create-app for a simple reactive app.
 ##### What I would add or improve
 - More unit tests, especially for handleSubmit method;
 - Snapshot testing when the error message is rendered;
-- Stryker (mutation testing) is also possible at the front-end.
+- Mutation testing is also possible at the front-end, and Stryker does it fine.
 
 Now it's time to check for integration.
 
-####Consumer-Driven Contracts
+#### Consumer-Driven Contracts
 
 Best thing since sliced bread: It tests integration without actually deploying the apps. In other words, we don't need to set the house on fire to test the fire alarm. I used Pact.io
 
-This is great for testing complex microservices architecture. I heard pleo uses kafka, so I wanted to make sure I would show off those as well, although I am not an expert at it (yet!)
+Contract Testing is great for testing complex microservices architecture. I heard pleo uses kafka, so I wanted to make sure I would show off Contract Testing as well, although I am not an expert at it (yet!)
 
-#####Implementation steps for the Consumer-Driven Contracts
+##### Implementation steps for the Consumer-Driven Contracts
 
 If locally:
 - Write tests for the consumer (here, it's the front-end). After running, it'll generate a Pact json.
@@ -64,18 +64,18 @@ If I were using a CI server, I would:
 - Fetch the pact at the consumer, verify it, and send the results back to the broker.
 - I'd probably use the can-i-deploy feature for safe deployment.
 
-####End-to-end tests
+#### End-to-end tests
 
 I used WebdriverIO for e2e tests. Although it tests integration as well, I find it particularly useful for testing visibility of components, how it looks, etc.
 
-#####Implementation steps for the E2E tests
+##### Implementation steps for the E2E tests
 
 - Run frontend and backend;
 - Write page objects;
 - Write the actual tests. Make sure to also make assertions for UI elements (for eg. error messages)
 
 
-####Performance tests
+#### Performance tests
 
 Functional tests are looking good. But what about the performance?
 
