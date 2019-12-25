@@ -1,0 +1,6 @@
+FROM ringcentral/gradle:5.5.1
+EXPOSE 8080
+RUN mkdir -p /usr/app/backend-pleo
+WORKDIR /usr/app/backend-pleo
+COPY . .
+CMD ["gradle","bootRun"]
