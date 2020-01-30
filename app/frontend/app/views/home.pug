@@ -1,0 +1,15 @@
+doctype html
+html
+  include header_partial
+  body
+    div(class="container")
+        img(src="heracles.jpeg" height="300px" width="100%")
+        p
+        form(method="POST" action="/") 
+            div(class="form-group row")
+                label(class="col-sm-2 col-form-label") Enter number:
+                div(class="col-sm-10")
+                    input(type="text" name="numberID" class="form-control-plaintext rounded border border-primary" id="input_number")
+            button(type="submit" class="btn btn-outline-primary" id="button_submit") Submit
+
+
