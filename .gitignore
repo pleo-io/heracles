@@ -3,3 +3,4 @@ app/backend/.idea
 app/backend/build
 app/backend/gradle
 app/backend/out
+app/frontend/node_modules
