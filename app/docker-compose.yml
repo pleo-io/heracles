@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  docker-backend-pleo:
+    build: ./backend/.
+    command: gradle bootRun
+    ports:
+        - "8080:8080"
+  docker-frontend-pleo:
+    environment: 
+      - BACKEND_SERVICE_URL=http://docker-backend-pleo:8080/format
+    build: ./frontend/.
+    command: npm start
+    ports:
+        - "80:3000"
+    depends_on:
+      - docker-backend-pleo

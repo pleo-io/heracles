@@ -3,7 +3,7 @@ const config = {
       port: 3000
     },
     service: {
-        url: 'http://localhost:8080/format'
+        url: process.env.BACKEND_SERVICE_URL ||  'http://localhost:8080/format'
     }
 };
    
