@@ -22,6 +22,7 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
     const number = req.body.numberID;
     if (numberValidator.validate(number)) {
+        console.log("Conencting to " + config.service.url);
         request({
             url: config.service.url,
             qs: {amount: number },
