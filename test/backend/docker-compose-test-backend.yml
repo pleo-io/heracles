@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  docker-backend-pleo:
+    build: ../../app/backend/.
+    command: gradle bootRun
+    ports:
+        - "8080:8080"
+  docker-test-backend-pleo:
+    build: .
+    environment: 
+      - BACKEND_SERVICE_URL=http://docker-backend-pleo
+    depends_on:
+      - docker-backend-pleo

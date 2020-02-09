@@ -4,3 +4,8 @@ app/backend/build
 app/backend/gradle
 app/backend/out
 app/frontend/node_modules
+test/backend/.gradle
+test/backend/.idea
+test/backend/build
+test/backend/gradle
+test/backend/out
