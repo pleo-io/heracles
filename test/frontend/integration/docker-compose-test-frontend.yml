@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  docker-frontend-pleo:
+    build: ../../../app/frontend/.
+    command: npm start
+    environment: 
+      - BACKEND_SERVICE_URL=http://docker-test-frontend-integration:8080/format
+  docker-test-frontend-integration:
+    build: .
+    volumes:
+      - ./:/usr/src/app
+    depends_on:
+      - docker-frontend-pleo

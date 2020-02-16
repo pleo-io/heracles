@@ -22,16 +22,19 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
     const number = req.body.numberID;
     if (numberValidator.validate(number)) {
-        console.log("Conencting to " + config.service.url);
+        console.log(`Conencting to '${config.service.url}' with value '${number}'`);
         request({
             url: config.service.url,
             qs: {amount: number },
-            method: 'GET'
+            method: 'GET',
+            timeout: 1500
         }, function(error, response, body){
         if(error) {
+            if (error.code === 'ESOCKETTIMEDOUT') {
+                res.render('error', {value_number: "TimeOut from server; please try again in a few minutes.." }  );
+            }
             res.render('error', {value_number: "Something happened with the server comunication!" }  );
         } else {
-            //console.log(response.statusCode, body);
             if (JSON.parse(body).status === 0) {
                 res.render('response', {value_number: JSON.parse(body).moneyFormatted} );
             } else {
@@ -45,4 +48,4 @@ app.post('/', function(req, res){
 
 });
 
-app.listen(config.app.port);
+app.listen(config.app.port, () => console.log(`FrontEnd started on port ${config.app.port}!`));

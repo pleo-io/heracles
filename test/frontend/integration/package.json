@@ -1,0 +1,19 @@
+{
+  "name": "integration",
+  "version": "1.0.0",
+  "description": "Integration tests for Heracles challenge",
+  "main": "integration.test.js",
+  "scripts": {
+    "mock": "node mock.js",
+    "test": "(node mock.js &) & ./node_modules/mocha/bin/mocha --reporter mochawesome integration.test.js"
+  },
+  "author": "Gerardo Argiz",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^7.0.1",
+    "mochawesome": "^4.1.0"
+  }
+}

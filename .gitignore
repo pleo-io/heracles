@@ -9,3 +9,5 @@ test/backend/.idea
 test/backend/build
 test/backend/gradle
 test/backend/out
+test/frontend/integration/node_modules
+test/frontend/integration/mochawesome-report
