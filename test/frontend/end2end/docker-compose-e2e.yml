@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  docker-backend-pleo:
+    build: ../../../app/backend/.
+    command: gradle bootRun
+    ports:
+        - "8080:8080"
+
+  docker-frontend-pleo:
+    environment: 
+      - BACKEND_SERVICE_URL=http://docker-backend-pleo:8080/format
+    build: ../../../app/frontend/.
+    command: npm start
+    ports:
+        - "80:3000"
+    depends_on:
+      - docker-backend-pleo
+
+  chrome:
+    image: selenium/node-chrome:3.141.59-zirconium
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+
+  hub:
+    image: selenium/hub:3.141.59-zirconium
+    ports:
+      - "4444:4444"
+
+  e2etest:
+    build: .
+    command:   bash -c "/bin/sleep 60 && npm test" 
+    environment: 
+      - SUT_APP_URL=http://docker-frontend-pleo:3000
+      - GRID_HOST=hub
+      - GRID_PORT=4444
+    volumes:
+      - ./:/usr/src/app   
+    depends_on:
+        - chrome
+        - docker-backend-pleo
+        - docker-frontend-pleo
+  

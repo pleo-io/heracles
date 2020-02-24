@@ -11,3 +11,6 @@ test/backend/gradle
 test/backend/out
 test/frontend/integration/node_modules
 test/frontend/integration/mochawesome-report
+test/frontend/end2end/node_modules
+test/frontend/end2end/allure-results
+test/frontend/end2end/allure-report
