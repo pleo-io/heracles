@@ -9,6 +9,6 @@ services:
   docker-test-frontend-integration:
     build: .
     volumes:
-      - ./:/usr/src/app
+      - ./:/usr/src/app-fe-int
     depends_on:
       - docker-frontend-pleo
