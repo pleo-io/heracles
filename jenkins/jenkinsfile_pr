@@ -1,0 +1,37 @@
+node {
+    stage('Checkout'){
+        git  branch: 'JENKINS_WORK', url: 'https://github.com/GArgiz/heracles.git'
+        sh 'docker --version'
+        sh 'docker-compose --version'
+    }
+    stage('Unit Tests') {
+        parallel(
+            'Backend': {
+                dir("app/backend") {
+                    sh 'docker build -t docker-backend-pleo-test -f Dockerfile.test .'
+                    sh 'docker run docker-backend-pleo-test:latest'
+                }
+            },
+            'FrontEnd': {
+                dir("app/frontend") {
+                    sh 'docker build -t docker-frontend-pleo-test -f Dockerfile.test .'
+                    sh 'docker run  docker-frontend-pleo-test:latest'
+                }
+            }
+        )
+    }
+    stage('Integration Tests') {
+        parallel(
+            'Backend': {
+                dir("test/backend") {
+                    sh 'docker-compose -f docker-compose-test-backend.yml up --build --abort-on-container-exit --exit-code-from docker-test-backend-pleo'
+                }
+            },
+            'FrontEnd': {
+                dir("test/frontend/integration") {
+                    sh 'docker-compose -f docker-compose-test-frontend.yml up --build --abort-on-container-exit --exit-code-from docker-test-frontend-integration'
+                }
+            }
+        )
+    }
+}

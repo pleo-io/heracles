@@ -41,10 +41,12 @@ This needs to be a "fully working application" (you choose the format: web, cli,
   
 ## Tasks:
 
-- [ ] Create Backend App
-- [ ] Create Frontend App
-- [ ] Add Backend Test Cases
-- [ ] Add Frontend Test Cases
+- [X] Create Backend App
+- [X] Create Frontend App
+- [X] Add Backend Test Cases
+- [X] Add Frontend Test Cases
+- [X] Basic CI Strategy
+- [ ] More tests..
 
 ## Implementation Notes:
 In progress...

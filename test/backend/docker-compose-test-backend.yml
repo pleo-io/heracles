@@ -11,6 +11,6 @@ services:
     environment: 
       - BACKEND_SERVICE_URL=http://docker-backend-pleo
     volumes:
-      - ./:/usr/app/backend-test-pleo
+      - ./build/reports:/usr/app/backend-test-pleo/build/reports
     depends_on:
       - docker-backend-pleo

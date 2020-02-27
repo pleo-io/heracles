@@ -9,6 +9,6 @@ services:
   docker-test-frontend-integration:
     build: .
     volumes:
-      - ./:/usr/src/app
+      - ./mochawesome-report:/usr/src/app-fe-int/mochawesome-report
     depends_on:
       - docker-frontend-pleo

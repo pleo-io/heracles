@@ -91,7 +91,7 @@ class IntegrationTests() {
 
     @Test
     fun measureTime() {
-        get("format?amount=1").then().time(lessThan(2000L));
+        get("format?amount=1").then().time(lessThan(5000L));
     }
 
 }

@@ -37,7 +37,7 @@ services:
       - GRID_HOST=hub
       - GRID_PORT=4444
     volumes:
-      - ./:/usr/src/app   
+      - ./allure-report:/usr/src/app-fe-e2e/allure-report
     depends_on:
         - chrome
         - docker-backend-pleo

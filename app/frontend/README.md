@@ -17,5 +17,5 @@ Run Tests
 ---------
 ```
  docker build -t docker-frontend-pleo-test -f Dockerfile.test .
- docker run  -p 3000:3000 docker-frontend-pleo-test:latest
+ docker run  docker-frontend-pleo-test:latest
 ```
