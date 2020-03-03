@@ -1,6 +1,14 @@
 Pleo Challenge FrontEnd Integration Test
 ========================================
 
+Technology Used
+---------------
+- nodejs
+- mocha
+- npm
+- axios
+
+
 Run
 ---
 ```

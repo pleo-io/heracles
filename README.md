@@ -46,7 +46,7 @@ This needs to be a "fully working application" (you choose the format: web, cli,
 - [X] Add Backend Test Cases
 - [X] Add Frontend Test Cases
 - [X] Basic CI Strategy
-- [ ] More tests..
+- [X] More tests..
 
 ## Implementation Notes:
 In progress...

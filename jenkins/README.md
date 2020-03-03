@@ -1,6 +1,10 @@
 Pleo Challenge CI
 =================
 
+Technology used:
+- Jenkins
+- scripted pipeline
+  
 Here a very basic CI strategy
 
 - With every push into a feature branch, all the unit tests must be run

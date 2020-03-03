@@ -1,6 +1,8 @@
 Pleo Challenge Backend Test
 ===========================
 
+API tests using groovy and gradle
+
 Run
 ---
 ```

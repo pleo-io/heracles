@@ -1,6 +1,14 @@
 Pleo Challenge End To End Test
 ==============================
 
+Technology used:
+- typescript
+- webdriverio
+- mocha
+- chai
+- allure
+
+
 Run
 ---
 ```

@@ -1,15 +1,15 @@
 doctype html
-html
+html(lang="en")
   include header_partial
   body
     div(class="container")
-        img(src="heracles.jpeg" height="300px" width="100%")
+        img(src="heracles.jpeg" height="300px" width="100%" alt="FrontEnd Image")
         p
-        form(method="POST" action="/") 
+        form(method="POST" action="/" title="Form for value to convert") 
             div(class="form-group row")
                 label(class="col-sm-2 col-form-label") Enter number:
                 div(class="col-sm-10")
-                    input(type="text" name="numberID" class="form-control-plaintext rounded border border-primary" id="input_number")
-            button(type="submit" class="btn btn-outline-primary" id="button_submit") Submit
+                    input(type="text" name="numberID" class="form-control-plaintext rounded border border-primary" id="input_number" title="Input for value to convert")
+            button(type="submit" class="btn btn-secondary" id="button_submit") Submit
 
 

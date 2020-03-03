@@ -14,3 +14,7 @@ test/frontend/integration/mochawesome-report
 test/frontend/end2end/node_modules
 test/frontend/end2end/allure-results
 test/frontend/end2end/allure-report
+test/more_tests/accessibility/node_modules
+test/more_tests/accessibility/mochawesome-report
+test/more_tests/mobile/node_modules
+test/more_tests/mobile/mochawesome-report
