@@ -1,4 +1,4 @@
-# Heracles - **The Greek Candidate Solution**
+# Heracles - **The Greek Candidate's Solution**
 Heracles is next generation currency formatter  which allows user to format the currency in a desired format.
 Heracles is split into two parts
 
