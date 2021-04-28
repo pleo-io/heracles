@@ -54,10 +54,16 @@ Currently, there are things that could have been implemented and not implemented
 application so maybe it does not add much value. But going ahead as the application might grow it would be beneficial to measure
    frontend performance using lighthouse, sitespeed etc.
 
+<br>
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Twelve_Labours_Altemps_Inv8642.jpg" height="300px"/>
+---
+---
+
+<br>
+<br>
 
 # Heracles: Pleo's Test Engineer Challenge - **Original assignment**
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Twelve_Labours_Altemps_Inv8642.jpg" height="300px"/>
 
 We're really happy that you're considering to join us! Here's a challenge that will help us understand your skills and serve as a starting discussion point for the interview.
 
