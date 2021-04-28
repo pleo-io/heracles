@@ -54,12 +54,9 @@ Currently, there are things that could have been implemented and not implemented
 application so maybe it does not add much value. But going ahead as the application might grow it would be beneficial to measure
    frontend performance using lighthouse, sitespeed etc.
 
-<br>
-
 ---
 ---
 
-<br>
 <br>
 
 # Heracles - **Original assignment**
