@@ -4,4 +4,4 @@ build/
 dist/
 
 # stryker temp files
-.stryker-tmp
+.stryker-tmp/
