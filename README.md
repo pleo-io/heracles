@@ -62,7 +62,7 @@ application so maybe it does not add much value. But going ahead as the applicat
 <br>
 <br>
 
-# Heracles: Pleo's Test Engineer Challenge - **Original assignment**
+# Heracles - **Original assignment**
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Twelve_Labours_Altemps_Inv8642.jpg" height="300px"/>
 
 We're really happy that you're considering to join us! Here's a challenge that will help us understand your skills and serve as a starting discussion point for the interview.
