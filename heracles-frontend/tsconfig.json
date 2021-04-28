@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es5",
+    "module": "commonjs",
+    "sourceMap": true,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "strictNullChecks": false,
+    "types": ["node", "jest", "webdriverio"]
+  }
+}
