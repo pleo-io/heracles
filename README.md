@@ -2,7 +2,6 @@
 Heracles is next generation currency formatter  which allows user to format the currency in a desired format.
 Heracles is split into two parts
 
-[See orignal assignment](#Heracles)
 
 ## heracles-backend
 Heracles backend is express based server which exposes a REST API to handle the currency formatting.
