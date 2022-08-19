@@ -1,0 +1,12 @@
+version: 1
+service:
+  name: Heracles
+  description: Hiring challenge for Quality engineering positions
+  owner: quality
+  tags:
+    - key: type
+      value: hiring-challenge
+  repositories:
+    - name: pleo-io/heracles
+      path: "/"
+      provider: github
