@@ -6,6 +6,7 @@ service:
   tags:
     - key: type
       value: hiring-challenge
+  language: Text
   repositories:
     - name: pleo-io/heracles
       path: "/"
